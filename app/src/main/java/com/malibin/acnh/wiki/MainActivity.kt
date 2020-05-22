@@ -1,8 +1,8 @@
 package com.malibin.acnh.wiki
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.room.Room
 import com.malibin.acnh.wiki.data.AppDataBase
@@ -36,10 +36,6 @@ class MainActivity : AppCompatActivity() {
 
 
                 Log.d("Malibin Debug", topDao.getTopsOfCatalog().toString())
-
-
-
-
             }
         }
 
