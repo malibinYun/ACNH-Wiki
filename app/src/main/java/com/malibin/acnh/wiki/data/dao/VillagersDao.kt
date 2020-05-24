@@ -16,7 +16,7 @@ interface VillagersDao : BaseDao<Villager> {
     suspend fun getVillagers(): List<Villager>
 
     @Query("SELECT * FROM villager WHERE amiiboIndex = :amiiboIndex")
-    suspend fun getVillagerById(amiiboIndex: Int): Villager
+    suspend fun getVillagerById(amiiboIndex: Int): Villager?
 
     @Query("SELECT * FROM villager WHERE isInHome = 1")
     suspend fun getVillagersInHome(): List<Villager>

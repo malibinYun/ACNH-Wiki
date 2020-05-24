@@ -6,7 +6,7 @@ interface VillagerDataSource {
 
     suspend fun getAllVillagers(): List<Villager>
 
-    suspend fun getVillagerById(amiiboIndex: Int): Villager
+    suspend fun getVillagerById(amiiboIndex: Int): Villager?
 
     suspend fun getVillagerInHome(): List<Villager>
 

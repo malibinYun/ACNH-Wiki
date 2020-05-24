@@ -1,6 +1,7 @@
 package com.malibin.acnh.wiki.data.entity
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
 /**
@@ -10,6 +11,7 @@ import java.util.*
 
 @Entity
 data class Villager(
+    @PrimaryKey
     val amiiboIndex: Int,
     val nameKor: String,
     val nameJpn: String,
