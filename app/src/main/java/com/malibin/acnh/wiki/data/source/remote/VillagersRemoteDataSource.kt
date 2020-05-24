@@ -2,7 +2,7 @@ package com.malibin.acnh.wiki.data.source.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.malibin.acnh.wiki.data.entity.Villager
-import com.malibin.acnh.wiki.data.source.VillagerDataSource
+import com.malibin.acnh.wiki.data.source.VillagersDataSource
 import com.malibin.acnh.wiki.data.util.VILLAGERS_PATH
 import com.malibin.acnh.wiki.data.util.getCollectionSnapshot
 import com.malibin.acnh.wiki.data.util.toVillagers
@@ -13,9 +13,9 @@ import kotlinx.coroutines.tasks.await
  * on 5월 25, 2020
  */
 
-class VillagerRemoteDataSource(
+class VillagersRemoteDataSource(
     private val fireStore: FirebaseFirestore
-) : VillagerDataSource {
+) : VillagersDataSource {
 
     override suspend fun getAllVillagers(): List<Villager> {
         val snapshot = fireStore.getCollectionSnapshot(VILLAGERS_PATH).await()

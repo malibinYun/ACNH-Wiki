@@ -3,17 +3,11 @@ package com.malibin.acnh.wiki
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.room.Room
 import com.google.firebase.firestore.FirebaseFirestore
-import com.malibin.acnh.wiki.data.AppDataBase
-import com.malibin.acnh.wiki.data.Top
-import com.malibin.acnh.wiki.data.source.remote.VillagerRemoteDataSource
-import kotlinx.android.synthetic.main.activity_main.*
+import com.malibin.acnh.wiki.data.source.remote.VillagersRemoteDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,11 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val source = VillagerRemoteDataSource(FirebaseFirestore.getInstance())
-            val data = source.getAllVillagers()
-            data.forEach { Log.d("Malibin Debug", it.toString()) }
-        }
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val source = VillagersRemoteDataSource(FirebaseFirestore.getInstance())
+//            val data = source.getAllVillagers()
+//            data.forEach { Log.d("Malibin Debug", it.toString()) }
+//        }
 
 //        val db = Room.databaseBuilder(this, AppDataBase::class.java, "database").build()
 //

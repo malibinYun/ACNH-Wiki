@@ -1,6 +1,7 @@
 package com.malibin.acnh.wiki.data.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 import com.malibin.acnh.wiki.data.entity.Villager
 
@@ -10,10 +11,10 @@ import com.malibin.acnh.wiki.data.entity.Villager
  */
 
 @Dao
-interface VillagersDao : BaseDao<Villager> {
+interface VillagersDao {
 
     @Query("SELECT * FROM villager")
-    suspend fun getVillagers(): List<Villager>
+    suspend fun getAllVillagers(): List<Villager>
 
     @Query("SELECT * FROM villager WHERE amiiboIndex = :amiiboIndex")
     suspend fun getVillagerById(amiiboIndex: Int): Villager?
@@ -24,10 +25,16 @@ interface VillagersDao : BaseDao<Villager> {
     @Query("SELECT * FROM villager WHERE isFavorite = 1")
     suspend fun getFavoriteVillagers(): List<Villager>
 
+    @Insert
+    suspend fun insertVillagers(villagers: List<Villager>)
+
     @Query("UPDATE villager SET isInHome = :isInHome WHERE amiiboIndex = :amiiboIndex")
     suspend fun updateIsInHome(amiiboIndex: Int, isInHome: Boolean)
 
     @Query("UPDATE villager SET isInHome = :isFavorite WHERE amiiboIndex = :amiiboIndex")
     suspend fun updateIsFavorite(amiiboIndex: Int, isFavorite: Boolean)
+
+    @Query("DELETE FROM villager")
+    suspend fun deleteAllVillagers()
 
 }

@@ -2,7 +2,7 @@ package com.malibin.acnh.wiki.data.source
 
 import com.malibin.acnh.wiki.data.entity.Villager
 
-interface VillagerDataSource {
+interface VillagersDataSource {
 
     suspend fun getAllVillagers(): List<Villager>
 
