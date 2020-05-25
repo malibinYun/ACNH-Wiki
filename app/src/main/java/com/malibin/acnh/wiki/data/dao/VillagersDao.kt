@@ -31,7 +31,7 @@ interface VillagersDao {
     @Query("UPDATE villager SET isInHome = :isInHome WHERE amiiboIndex = :amiiboIndex")
     suspend fun updateIsInHome(amiiboIndex: Int, isInHome: Boolean)
 
-    @Query("UPDATE villager SET isInHome = :isFavorite WHERE amiiboIndex = :amiiboIndex")
+    @Query("UPDATE villager SET isFavorite = :isFavorite WHERE amiiboIndex = :amiiboIndex")
     suspend fun updateIsFavorite(amiiboIndex: Int, isFavorite: Boolean)
 
     @Query("DELETE FROM villager")

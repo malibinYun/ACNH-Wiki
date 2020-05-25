@@ -2,7 +2,6 @@ package com.malibin.acnh.wiki.data.repository
 
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.source.VillagersDataSource
-import kotlin.collections.LinkedHashMap
 
 /**
  * Created By Yun Hyeok
@@ -14,7 +13,7 @@ class VillagersRepository(
     private val villagersRemoteDataSource: VillagersDataSource
 ) : VillagersDataSource {
 
-    private val cachedVillagers = LinkedHashMap<Int, Villager>()
+    private val cachedVillagers = HashMap<Int, Villager>()
     private var isFullLoaded = false
 
     override suspend fun getAllVillagers(): List<Villager> {
@@ -48,6 +47,8 @@ class VillagersRepository(
             ?: villagersLocalDataSource.fetchVillager(amiiboIndex)
     }
 
+    // 거주, 좋아하는 주민중 하나라도 불리면 나머지하나가 작동제대로안함.
+    // 고쳐야함..
     override suspend fun getVillagersInHome(): List<Villager> {
         if (cachedVillagers.isEmpty()) {
             val villagersInHome = villagersLocalDataSource.getVillagersInHome()
