@@ -7,39 +7,29 @@ import com.malibin.acnh.wiki.data.source.VillagersDataSource
 class VillagersLocalDataSource(
     private val villagersDao: VillagersDao
 ) : VillagersDataSource {
+
     override suspend fun getAllVillagers(): List<Villager> {
         return villagersDao.getAllVillagers()
     }
 
-    override suspend fun getVillagerById(amiiboIndex: Int): Villager? {
+    override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
         return villagersDao.getVillagerById(amiiboIndex)
     }
 
-    override suspend fun getVillagerInHome(): List<Villager> {
-        return villagersDao.getVillagersInHome()
-    }
-
-    override suspend fun getFavoriteVillagers(): List<Villager> {
-        return villagersDao.getFavoriteVillagers()
+    override suspend fun saveVillagers(villagers: List<Villager>) {
+        villagersDao.insertVillagers(villagers)
     }
 
     override suspend fun deleteAllVillagers() {
         villagersDao.deleteAllVillagers()
     }
 
-    override suspend fun checkFavoriteVillager(villager: Villager) {
-        villagersDao.updateIsFavorite(villager.amiiboIndex, true)
+    override suspend fun checkFavoriteVillager(villager: Villager, isChecked: Boolean) {
+        villagersDao.updateIsFavorite(villager.amiiboIndex, isChecked)
     }
 
-    override suspend fun unCheckFavoriteVillager(villager: Villager) {
-        villagersDao.updateIsFavorite(villager.amiiboIndex, false)
+    override suspend fun checkHomeVillager(villager: Villager, isChecked: Boolean) {
+        villagersDao.updateIsInHome(villager.amiiboIndex, isChecked)
     }
 
-    override suspend fun checkHomeVillager(villager: Villager) {
-        villagersDao.updateIsInHome(villager.amiiboIndex, true)
-    }
-
-    override suspend fun unCheckHomeVillager(villager: Villager) {
-        villagersDao.updateIsInHome(villager.amiiboIndex, false)
-    }
 }

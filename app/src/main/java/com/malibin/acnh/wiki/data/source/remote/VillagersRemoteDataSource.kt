@@ -22,38 +22,25 @@ class VillagersRemoteDataSource(
         return snapshot.toVillagers()
     }
 
-    override suspend fun getVillagerById(amiiboIndex: Int): Villager? {
+    override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
         // Cannot Write Remote Source
         return null
     }
 
-    override suspend fun getVillagerInHome(): List<Villager> {
+    override suspend fun saveVillagers(villagers: List<Villager>) {
         // Cannot Write Remote Source
-        return emptyList()
-    }
-
-    override suspend fun getFavoriteVillagers(): List<Villager> {
-        // Cannot Write Remote Source
-        return emptyList()
     }
 
     override suspend fun deleteAllVillagers() {
         // Cannot Write Remote Source
     }
 
-    override suspend fun checkFavoriteVillager(villager: Villager) {
+    override suspend fun checkFavoriteVillager(villager: Villager, isChecked: Boolean) {
         // Cannot Write Remote Source
     }
 
-    override suspend fun unCheckFavoriteVillager(villager: Villager) {
+    override suspend fun checkHomeVillager(villager: Villager, isChecked: Boolean) {
         // Cannot Write Remote Source
     }
 
-    override suspend fun checkHomeVillager(villager: Villager) {
-        // Cannot Write Remote Source
-    }
-
-    override suspend fun unCheckHomeVillager(villager: Villager) {
-        // Cannot Write Remote Source
-    }
 }
