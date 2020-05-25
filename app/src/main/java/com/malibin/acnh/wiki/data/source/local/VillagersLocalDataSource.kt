@@ -16,6 +16,14 @@ class VillagersLocalDataSource(
         return villagersDao.getVillagerById(amiiboIndex)
     }
 
+    override suspend fun getVillagersInHome(): List<Villager> {
+        return villagersDao.getVillagersInHome()
+    }
+
+    override suspend fun getFavoriteVillagers(): List<Villager> {
+        return villagersDao.getFavoriteVillagers()
+    }
+
     override suspend fun saveVillagers(villagers: List<Villager>) {
         villagersDao.insertVillagers(villagers)
     }

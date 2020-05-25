@@ -15,28 +15,29 @@ class VillagersRepository(
 ) : VillagersDataSource {
 
     private val cachedVillagers = LinkedHashMap<Int, Villager>()
+    private var isFullLoaded = false
 
     override suspend fun getAllVillagers(): List<Villager> {
-        if (cachedVillagers.isNotEmpty()) {
-            return cachedVillagers.values.toList()
+        if (cachedVillagers.isNotEmpty() && isFullLoaded) {
+            return cachedVillagers.values.toList().sortedBy { it.amiiboIndex }
         }
         val localVillagers = villagersLocalDataSource.getAllVillagers()
+        isFullLoaded = true
         if (localVillagers.isEmpty()) {
             return loadVillagersFromRemoteAndGet()
         }
-        refreshCache(localVillagers)
+        cacheVillagers(localVillagers)
         return localVillagers
     }
 
     private suspend fun loadVillagersFromRemoteAndGet(): List<Villager> {
         val remoteVillagers = villagersRemoteDataSource.getAllVillagers()
-        refreshCache(remoteVillagers)
+        cacheVillagers(remoteVillagers)
         villagersLocalDataSource.saveVillagers(remoteVillagers)
         return remoteVillagers
     }
 
-    private fun refreshCache(villagers: List<Villager>) {
-        cachedVillagers.clear()
+    private fun cacheVillagers(villagers: List<Villager>) {
         villagers
             .map { it.copy() }
             .forEach { cachedVillagers[it.amiiboIndex] = it }
@@ -47,13 +48,34 @@ class VillagersRepository(
             ?: villagersLocalDataSource.fetchVillager(amiiboIndex)
     }
 
-    private fun getCachedVillagerById(amiiboIndex: Int) = cachedVillagers[amiiboIndex]
+    override suspend fun getVillagersInHome(): List<Villager> {
+        if (cachedVillagers.isEmpty()) {
+            val villagersInHome = villagersLocalDataSource.getVillagersInHome()
+            cacheVillagers(villagersInHome)
+            return villagersInHome
+        }
+        return cachedVillagers.values
+            .filter { it.isInHome }
+            .sortedBy { it.amiiboIndex }
+    }
+
+    override suspend fun getFavoriteVillagers(): List<Villager> {
+        if (cachedVillagers.isEmpty()) {
+            val favoriteVillagers = villagersLocalDataSource.getFavoriteVillagers()
+            cacheVillagers(favoriteVillagers)
+            return favoriteVillagers
+        }
+        return cachedVillagers.values
+            .filter { it.isFavorite }
+            .sortedBy { it.amiiboIndex }
+    }
 
     override suspend fun saveVillagers(villagers: List<Villager>) {
         // Not Available
     }
 
     override suspend fun deleteAllVillagers() {
+        cachedVillagers.clear()
         villagersLocalDataSource.deleteAllVillagers()
     }
 
@@ -70,5 +92,7 @@ class VillagersRepository(
             villagersLocalDataSource.checkHomeVillager(it, isChecked)
         }
     }
+
+    private fun getCachedVillagerById(amiiboIndex: Int) = cachedVillagers[amiiboIndex]
 
 }

@@ -27,6 +27,16 @@ class VillagersRemoteDataSource(
         return null
     }
 
+    override suspend fun getVillagersInHome(): List<Villager> {
+        // Cannot Write Remote Source
+        return emptyList()
+    }
+
+    override suspend fun getFavoriteVillagers(): List<Villager> {
+        // Cannot Write Remote Source
+        return emptyList()
+    }
+
     override suspend fun saveVillagers(villagers: List<Villager>) {
         // Cannot Write Remote Source
     }

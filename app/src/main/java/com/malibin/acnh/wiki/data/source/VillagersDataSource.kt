@@ -8,6 +8,10 @@ interface VillagersDataSource {
 
     suspend fun fetchVillager(amiiboIndex: Int): Villager?
 
+    suspend fun getVillagersInHome(): List<Villager>
+
+    suspend fun getFavoriteVillagers(): List<Villager>
+
     suspend fun saveVillagers(villagers: List<Villager>)
 
     suspend fun deleteAllVillagers()
