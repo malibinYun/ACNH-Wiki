@@ -10,9 +10,10 @@ import androidx.room.Entity
 @Entity
 class Rug(
     id: Int,
-    name: String,
+    nameKor: String,
+    nameEng: String,
     imageUrl: String,
-    buyCost: Int,
+    buyCost: Int?,
     sellPrice: Int,
     source: String,
     sourceNote: String,
@@ -24,17 +25,18 @@ class Rug(
     val hhaSeries: String,
     val milesPrice: Int?
 ) : Catalog(
-    id,
-    name,
-    imageUrl,
-    buyCost,
-    sellPrice,
-    source,
-    sourceNote,
-    colors,
-    available,
-    canDiy,
-    size
+    id = id,
+    nameKor = nameKor,
+    nameEng = nameEng,
+    imageUrl = imageUrl,
+    buyCost = buyCost,
+    sellPrice = sellPrice,
+    source = source,
+    sourceNote = sourceNote,
+    colors = colors,
+    available = available,
+    canDiy = canDiy,
+    size = size
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

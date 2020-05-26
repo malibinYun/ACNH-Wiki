@@ -9,9 +9,10 @@ import com.malibin.acnh.wiki.data.entity.Rug
 
 data class FRug(
     val id: Int,
-    val name: String,
+    val nameKor: String,
+    val nameEng: String,
     val imageUrl: String,
-    val buyCost: Int,
+    val buyCost: Int?,
     val sellPrice: Int,
     val source: String,
     val sourceNote: String,
@@ -25,7 +26,8 @@ data class FRug(
 ) {
     constructor() : this(
         id = -1,
-        name = "",
+        nameKor = "",
+        nameEng = "",
         imageUrl = "",
         buyCost = -1,
         sellPrice = -1,
@@ -42,7 +44,8 @@ data class FRug(
 
     fun toRug() = Rug(
         id = id,
-        name = name,
+        nameKor = nameKor,
+        nameEng = nameEng,
         imageUrl = imageUrl,
         buyCost = buyCost,
         sellPrice = sellPrice,

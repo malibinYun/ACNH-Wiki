@@ -12,7 +12,8 @@ import androidx.room.PrimaryKey
 open class Catalog(
     @PrimaryKey
     val id: Int,
-    val name: String,
+    val nameKor: String,
+    val nameEng: String,
     val imageUrl: String,
     val buyCost: Int?,
     val sellPrice: Int,
@@ -25,7 +26,6 @@ open class Catalog(
     var isCollected: Boolean = false,
     var isWished: Boolean = false
 ) {
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -33,7 +33,8 @@ open class Catalog(
         other as Catalog
 
         if (id != other.id) return false
-        if (name != other.name) return false
+        if (nameKor != other.nameKor) return false
+        if (nameEng != other.nameEng) return false
         if (imageUrl != other.imageUrl) return false
         if (buyCost != other.buyCost) return false
         if (sellPrice != other.sellPrice) return false
@@ -51,7 +52,8 @@ open class Catalog(
 
     override fun hashCode(): Int {
         var result = id
-        result = 31 * result + name.hashCode()
+        result = 31 * result + nameKor.hashCode()
+        result = 31 * result + nameEng.hashCode()
         result = 31 * result + imageUrl.hashCode()
         result = 31 * result + (buyCost ?: 0)
         result = 31 * result + sellPrice
@@ -67,6 +69,6 @@ open class Catalog(
     }
 
     override fun toString(): String {
-        return "Catalog(id=$id, name='$name', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', isCollected=$isCollected, isWished=$isWished)"
+        return "Catalog(id=$id, nameKor='$nameKor', nameEng='$nameEng', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', isCollected=$isCollected, isWished=$isWished)"
     }
 }
