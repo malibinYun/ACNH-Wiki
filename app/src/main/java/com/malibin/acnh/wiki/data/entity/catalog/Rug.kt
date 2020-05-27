@@ -1,6 +1,7 @@
-package com.malibin.acnh.wiki.data.entity
+package com.malibin.acnh.wiki.data.entity.catalog
 
 import androidx.room.Entity
+import com.malibin.acnh.wiki.data.entity.Catalog
 
 /**
  * Created By Malibin
@@ -21,9 +22,9 @@ class Rug(
     available: String,
     canDiy: Boolean,
     size: String,
+    milesPrice: Int?,
     val hhaConcepts: List<String>,
-    val hhaSeries: String,
-    val milesPrice: Int?
+    val hhaSeries: String
 ) : Catalog(
     id = id,
     nameKor = nameKor,
@@ -36,7 +37,8 @@ class Rug(
     colors = colors,
     available = available,
     canDiy = canDiy,
-    size = size
+    size = size,
+    milesPrice = milesPrice
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

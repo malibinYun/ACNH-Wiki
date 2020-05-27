@@ -1,6 +1,6 @@
-package com.malibin.acnh.wiki.data.response
+package com.malibin.acnh.wiki.data.response.catalog
 
-import com.malibin.acnh.wiki.data.entity.Rug
+import com.malibin.acnh.wiki.data.entity.catalog.Rug
 
 /**
  * Created By Malibin

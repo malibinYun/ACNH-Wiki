@@ -23,6 +23,7 @@ open class Catalog(
     val available: String,
     val canDiy: Boolean,
     val size: String,
+    val milesPrice: Int?,
     var isCollected: Boolean = false,
     var isWished: Boolean = false
 ) {
@@ -44,6 +45,7 @@ open class Catalog(
         if (available != other.available) return false
         if (canDiy != other.canDiy) return false
         if (size != other.size) return false
+        if (milesPrice != other.milesPrice) return false
         if (isCollected != other.isCollected) return false
         if (isWished != other.isWished) return false
 
@@ -63,12 +65,13 @@ open class Catalog(
         result = 31 * result + available.hashCode()
         result = 31 * result + canDiy.hashCode()
         result = 31 * result + size.hashCode()
+        result = 31 * result + (milesPrice ?: 0)
         result = 31 * result + isCollected.hashCode()
         result = 31 * result + isWished.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "Catalog(id=$id, nameKor='$nameKor', nameEng='$nameEng', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', isCollected=$isCollected, isWished=$isWished)"
+        return "Catalog(id=$id, nameKor='$nameKor', nameEng='$nameEng', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', milesPrice=$milesPrice, isCollected=$isCollected, isWished=$isWished)"
     }
 }

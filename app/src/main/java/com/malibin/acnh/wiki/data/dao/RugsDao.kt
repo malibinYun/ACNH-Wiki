@@ -3,7 +3,7 @@ package com.malibin.acnh.wiki.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.malibin.acnh.wiki.data.entity.Rug
+import com.malibin.acnh.wiki.data.entity.catalog.Rug
 
 /**
  * Created By Malibin

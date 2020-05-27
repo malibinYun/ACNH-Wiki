@@ -3,9 +3,8 @@ package com.malibin.acnh.wiki
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import com.google.common.truth.Truth.assertThat
 import com.malibin.acnh.wiki.data.AppDataBase
-import com.malibin.acnh.wiki.data.entity.Rug
+import com.malibin.acnh.wiki.data.entity.catalog.Rug
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
