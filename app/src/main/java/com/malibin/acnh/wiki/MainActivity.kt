@@ -10,7 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
 //        CoroutineScope(Dispatchers.IO).launch {
 //            val source = VillagersRemoteDataSource(FirebaseFirestore.getInstance())
 //            val data = source.getAllVillagers()
