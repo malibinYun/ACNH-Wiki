@@ -1,7 +1,7 @@
 package com.malibin.acnh.wiki.data.entity.catalog
 
 import androidx.room.Entity
-import com.malibin.acnh.wiki.data.entity.Catalog
+import com.malibin.acnh.wiki.data.entity.Item
 
 /**
  * Created By Malibin
@@ -22,10 +22,8 @@ class Rug(
     available: String,
     canDiy: Boolean,
     size: String,
-    milesPrice: Int?,
-    val hhaConcepts: List<String>,
-    val hhaSeries: String
-) : Catalog(
+    milesPrice: Int?
+) : Item(
     id = id,
     nameKor = nameKor,
     nameEng = nameEng,
@@ -38,31 +36,12 @@ class Rug(
     available = available,
     canDiy = canDiy,
     size = size,
-    milesPrice = milesPrice
+    milesPrice = milesPrice,
+    dType = Type.RUGS
 ) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        if (!super.equals(other)) return false
-
-        other as Rug
-
-        if (hhaConcepts != other.hhaConcepts) return false
-        if (hhaSeries != other.hhaSeries) return false
-        if (milesPrice != other.milesPrice) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = super.hashCode()
-        result = 31 * result + hhaConcepts.hashCode()
-        result = 31 * result + hhaSeries.hashCode()
-        result = 31 * result + (milesPrice ?: 0)
-        return result
-    }
 
     override fun toString(): String {
-        return "Rug ${super.toString()} Rug(hhaConcepts=$hhaConcepts, hhaSeries='$hhaSeries', milesPrice=$milesPrice)"
+        return "Rug() ${super.toString()}"
     }
+
 }

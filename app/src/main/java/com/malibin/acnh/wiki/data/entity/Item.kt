@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
  */
 
 @Entity
-open class Catalog(
+open class Item(
     @PrimaryKey
     val id: Int,
     val nameKor: String,
@@ -24,6 +24,7 @@ open class Catalog(
     val canDiy: Boolean,
     val size: String,
     val milesPrice: Int?,
+    val dType: Type,
     var isCollected: Boolean = false,
     var isWished: Boolean = false
 ) {
@@ -31,7 +32,7 @@ open class Catalog(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as Catalog
+        other as Item
 
         if (id != other.id) return false
         if (nameKor != other.nameKor) return false
@@ -73,5 +74,17 @@ open class Catalog(
 
     override fun toString(): String {
         return "Catalog(id=$id, nameKor='$nameKor', nameEng='$nameEng', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', milesPrice=$milesPrice, isCollected=$isCollected, isWished=$isWished)"
+    }
+
+    enum class Type {
+        FENCES, MUSICS, POSTERS, PHOTOS, TOOLS,
+        RUGS, FLOORS, WALLPAPERS,
+        WALL_MOUNTED, MISCELLANEOUS, HOUSEWARES,
+        TOP, BOTTOM, DRESSUP, HEADWEAR, ACCESSORY, SOCKS, SHOES, BAG, UMBRELLA;
+
+        companion object {
+
+        }
+
     }
 }

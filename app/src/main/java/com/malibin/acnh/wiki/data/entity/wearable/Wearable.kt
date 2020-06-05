@@ -1,6 +1,6 @@
 package com.malibin.acnh.wiki.data.entity.wearable
 
-import com.malibin.acnh.wiki.data.entity.Catalog
+import com.malibin.acnh.wiki.data.entity.Item
 
 
 /**
@@ -22,14 +22,14 @@ class Wearable(
     canDiy: Boolean,
     size: String,
     milesPrice: Int?,
-    val type: Type,
+    dType: Type,
     val closetImage: String,
     val seasonalAvailability: String,
     val style: String,
     val labelThemes: List<String>,
     val variation: String,
     val canVillagerWear: Boolean
-) : Catalog(
+) : Item(
     id = id,
     nameKor = nameKor,
     nameEng = nameEng,
@@ -42,8 +42,10 @@ class Wearable(
     available = available,
     canDiy = canDiy,
     size = size,
-    milesPrice = milesPrice
+    milesPrice = milesPrice,
+    dType = dType
 ) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -51,7 +53,6 @@ class Wearable(
 
         other as Wearable
 
-        if (type != other.type) return false
         if (closetImage != other.closetImage) return false
         if (seasonalAvailability != other.seasonalAvailability) return false
         if (style != other.style) return false
@@ -64,7 +65,6 @@ class Wearable(
 
     override fun hashCode(): Int {
         var result = super.hashCode()
-        result = 31 * result + type.hashCode()
         result = 31 * result + closetImage.hashCode()
         result = 31 * result + seasonalAvailability.hashCode()
         result = 31 * result + style.hashCode()
@@ -75,13 +75,7 @@ class Wearable(
     }
 
     override fun toString(): String {
-        return "Wearable $type ${super.toString()} Wearable(type=$type, closetImage='$closetImage', seasonalAvailability='$seasonalAvailability', style='$style', labelThemes=$labelThemes, variation='$variation', canVillagerWear=$canVillagerWear)"
+        return "Wearable $dType ${super.toString()} Wearable(dType=$dType, closetImage='$closetImage', seasonalAvailability='$seasonalAvailability', style='$style', labelThemes=$labelThemes, variation='$variation', canVillagerWear=$canVillagerWear)"
     }
 
-    enum class Type {
-        TOP, BOTTOM, DRESSUP, HEADWEAR, ACCESSORY, SOCKS, SHOES, BAG, UMBRELLA;
-
-        companion object {}
-
-    }
 }
