@@ -1,4 +1,4 @@
-package com.malibin.acnh.wiki.data.entity.catalog
+package com.malibin.acnh.wiki.data.entity
 
 import androidx.room.Entity
 import com.malibin.acnh.wiki.data.entity.Item

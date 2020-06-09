@@ -1,6 +1,4 @@
-package com.malibin.acnh.wiki.data.entity.wearable
-
-import com.malibin.acnh.wiki.data.entity.Item
+package com.malibin.acnh.wiki.data.entity
 
 
 /**

@@ -1,6 +1,6 @@
 package com.malibin.acnh.wiki.data.response.catalog
 
-import com.malibin.acnh.wiki.data.entity.catalog.Rug
+import com.malibin.acnh.wiki.data.entity.Rug
 
 /**
  * Created By Malibin
@@ -20,8 +20,6 @@ data class FRug(
     val available: String,
     val canDiy: Boolean,
     val size: String,
-    val hhaConcepts: List<String>, // 삭제해라
-    val hhaSeries: String, // 삭제해라
     val milesPrice: Int?
 ) {
     constructor() : this(
@@ -37,8 +35,6 @@ data class FRug(
         available = "",
         canDiy = false,
         size = "",
-        hhaConcepts = emptyList(),
-        hhaSeries = "",
         milesPrice = null
     )
 
@@ -55,8 +51,6 @@ data class FRug(
         available = available,
         canDiy = canDiy,
         size = size,
-        hhaConcepts = hhaConcepts,
-        hhaSeries = hhaSeries,
         milesPrice = milesPrice
     )
 }

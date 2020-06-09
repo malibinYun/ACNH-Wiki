@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.malibin.acnh.wiki.data.dao.RugsDao
 import com.malibin.acnh.wiki.data.dao.TopsDao
 import com.malibin.acnh.wiki.data.dao.VillagersDao
-import com.malibin.acnh.wiki.data.entity.catalog.Rug
+import com.malibin.acnh.wiki.data.entity.Rug
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.util.DateTypeConverter
 import com.malibin.acnh.wiki.data.util.ListTypeConverter
