@@ -23,34 +23,31 @@ class VillagersRemoteDataSource(
     }
 
     override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
-        // Cannot Write Remote Source
-        return null
+        throw UnsupportedOperationException("Cannot call fetchVillager in remote source")
     }
 
     override suspend fun getVillagersInHome(): List<Villager> {
-        // Cannot Write Remote Source
-        return emptyList()
+        throw UnsupportedOperationException("Cannot call getVillagersInHome in remote source")
     }
 
     override suspend fun getFavoriteVillagers(): List<Villager> {
-        // Cannot Write Remote Source
-        return emptyList()
+        throw UnsupportedOperationException("Cannot call getFavoriteVillagers in remote source")
     }
 
     override suspend fun saveVillagers(villagers: List<Villager>) {
-        // Cannot Write Remote Source
+        throw UnsupportedOperationException("Cannot call saveVillagers in remote source")
     }
 
     override suspend fun deleteAllVillagers() {
-        // Cannot Write Remote Source
+        throw UnsupportedOperationException("Cannot call deleteAllVillagers in remote source")
     }
 
     override suspend fun checkFavoriteVillager(villager: Villager, isChecked: Boolean) {
-        // Cannot Write Remote Source
+        throw UnsupportedOperationException("Cannot call checkFavoriteVillager in remote source")
     }
 
     override suspend fun checkHomeVillager(villager: Villager, isChecked: Boolean) {
-        // Cannot Write Remote Source
+        throw UnsupportedOperationException("Cannot call checkHomeVillager in remote source")
     }
 
 }
