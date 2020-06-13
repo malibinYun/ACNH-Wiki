@@ -1,10 +1,11 @@
 package com.malibin.acnh.wiki.data.entity
 
-// Rug
-// Floor
-// Wallpaper
+/**
+ * Created By Malibin
+ * on 6월 13, 2020
+ */
 
-class HouseFurniture(
+class Tool(
     id: Int,
     nameKor: String,
     nameEng: String,
@@ -18,7 +19,13 @@ class HouseFurniture(
     canDiy: Boolean,
     size: String,
     milesPrice: Int?,
-    dType: Type
+    dType: Type,
+    val variantId: String,
+    val variationName: String,
+    val bodyTitle: String,
+    val kitCost: Int,
+    val canBodyCustom: Boolean,
+    val useCount: Int
 ) : Item(
     id = id,
     nameKor = nameKor,
@@ -34,8 +41,4 @@ class HouseFurniture(
     size = size,
     milesPrice = milesPrice,
     dType = dType
-) {
-    override fun toString(): String {
-        return "HouseFurniture() $dType ${super.toString()} "
-    }
-}
+)

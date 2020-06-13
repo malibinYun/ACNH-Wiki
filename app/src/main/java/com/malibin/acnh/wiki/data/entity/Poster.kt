@@ -1,10 +1,11 @@
 package com.malibin.acnh.wiki.data.entity
 
-// Rug
-// Floor
-// Wallpaper
+/**
+ * Created By Malibin
+ * on 6월 13, 2020
+ */
 
-class HouseFurniture(
+class Poster(
     id: Int,
     nameKor: String,
     nameEng: String,
@@ -34,8 +35,4 @@ class HouseFurniture(
     size = size,
     milesPrice = milesPrice,
     dType = dType
-) {
-    override fun toString(): String {
-        return "HouseFurniture() $dType ${super.toString()} "
-    }
-}
+)
