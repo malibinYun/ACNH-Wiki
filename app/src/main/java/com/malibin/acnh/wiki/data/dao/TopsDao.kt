@@ -17,10 +17,4 @@ interface TopsDao {
     @Query("DELETE FROM top")
     fun deleteTops()
 
-    @Query("SELECT * FROM catalog")
-    fun getCatalogs(): List<Catalog>
-
-
-    @Query("SELECT * FROM top")
-    fun getTopsOfCatalog(): List<Catalog>
 }

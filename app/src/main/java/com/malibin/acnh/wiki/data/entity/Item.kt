@@ -47,6 +47,7 @@ open class Item(
         if (canDiy != other.canDiy) return false
         if (size != other.size) return false
         if (milesPrice != other.milesPrice) return false
+        if (dType != other.dType) return false
         if (isCollected != other.isCollected) return false
         if (isWished != other.isWished) return false
 
@@ -67,13 +68,14 @@ open class Item(
         result = 31 * result + canDiy.hashCode()
         result = 31 * result + size.hashCode()
         result = 31 * result + (milesPrice ?: 0)
+        result = 31 * result + dType.hashCode()
         result = 31 * result + isCollected.hashCode()
         result = 31 * result + isWished.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "Catalog(id=$id, nameKor='$nameKor', nameEng='$nameEng', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', milesPrice=$milesPrice, isCollected=$isCollected, isWished=$isWished)"
+        return "Item(id=$id, nameKor='$nameKor', nameEng='$nameEng', imageUrl='$imageUrl', buyCost=$buyCost, sellPrice=$sellPrice, source='$source', sourceNote='$sourceNote', colors=$colors, available='$available', canDiy=$canDiy, size='$size', milesPrice=$milesPrice, type=$dType, isCollected=$isCollected, isWished=$isWished)"
     }
 
     enum class Type {
@@ -81,10 +83,6 @@ open class Item(
         RUGS, FLOORS, WALLPAPERS,
         WALL_MOUNTEDS, MISCELLANEOUS, HOUSEWARES,
         TOPS, BOTTOMS, DRESSUPS, HEADWEARS, ACCESSORIES, SOCKS, SHOES, BAGS, UMBRELLAS;
-
-        companion object {
-
-        }
 
     }
 }

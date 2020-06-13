@@ -9,9 +9,10 @@ import com.malibin.acnh.wiki.data.dao.VillagersDao
 import com.malibin.acnh.wiki.data.entity.Rug
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.util.DateTypeConverter
+import com.malibin.acnh.wiki.data.util.ItemTypeConverter
 import com.malibin.acnh.wiki.data.util.ListTypeConverter
 
-@TypeConverters(DateTypeConverter::class, ListTypeConverter::class)
+@TypeConverters(DateTypeConverter::class, ListTypeConverter::class, ItemTypeConverter::class)
 @Database(
     entities = [Villager::class, Top::class, Catalog::class, Rug::class],
     version = 1
