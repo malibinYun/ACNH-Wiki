@@ -10,6 +10,7 @@ import com.malibin.acnh.wiki.data.ItemType
 
 @Entity
 data class Furniture(
+    val itemType: ItemType,
     @PrimaryKey
     val id: Int,
     val nameKor: String,
@@ -24,13 +25,12 @@ data class Furniture(
     val canDiy: Boolean,
     val size: String,
     val milesPrice: Int?,
-    val itemType: ItemType,
     val variantId: String,
     val variationName: String,
     val bodyTitle: String,
     val patternName: String,
     val patternTitle: String,
-    val kitCost: Int,
+    val kitCost: Int?,
     val canBodyCustom: Boolean,
     val canPatternCustom: Boolean,
     val canPutOutdoor: Boolean,

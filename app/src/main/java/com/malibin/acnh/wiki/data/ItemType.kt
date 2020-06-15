@@ -27,3 +27,7 @@ enum class ItemType(val korName: String) {
     BAGS("가방"),
     UMBRELLAS("우산");
 }
+
+fun ItemType.getRemoteLocation(): String {
+    return "item/item_${this.korName}"
+}
