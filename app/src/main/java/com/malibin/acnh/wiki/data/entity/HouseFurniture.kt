@@ -1,41 +1,30 @@
 package com.malibin.acnh.wiki.data.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.malibin.acnh.wiki.data.ItemType
+
 // Rug
 // Floor
 // Wallpaper
 
-class HouseFurniture(
-    id: Int,
-    nameKor: String,
-    nameEng: String,
-    imageUrl: String,
-    buyCost: Int?,
-    sellPrice: Int,
-    source: String,
-    sourceNote: String,
-    colors: List<String>,
-    available: String,
-    canDiy: Boolean,
-    size: String,
-    milesPrice: Int?,
-    dType: Type
-) : Item(
-    id = id,
-    nameKor = nameKor,
-    nameEng = nameEng,
-    imageUrl = imageUrl,
-    buyCost = buyCost,
-    sellPrice = sellPrice,
-    source = source,
-    sourceNote = sourceNote,
-    colors = colors,
-    available = available,
-    canDiy = canDiy,
-    size = size,
-    milesPrice = milesPrice,
-    dType = dType
-) {
-    override fun toString(): String {
-        return "HouseFurniture() $dType ${super.toString()} "
-    }
-}
+@Entity
+data class HouseFurniture(
+    @PrimaryKey
+    val id: Int,
+    val nameKor: String,
+    val nameEng: String,
+    val imageUrl: String,
+    val buyCost: Int?,
+    val sellPrice: Int,
+    val source: String,
+    val sourceNote: String,
+    val colors: List<String>,
+    val available: String,
+    val canDiy: Boolean,
+    val size: String,
+    val milesPrice: Int?,
+    val itemType: ItemType,
+    var collected: Boolean = false,
+    var wished: Boolean = false
+)

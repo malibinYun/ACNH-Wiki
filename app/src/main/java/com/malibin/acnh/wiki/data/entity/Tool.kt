@@ -1,44 +1,37 @@
 package com.malibin.acnh.wiki.data.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.malibin.acnh.wiki.data.ItemType
+
 /**
  * Created By Malibin
  * on 6월 13, 2020
  */
 
-class Tool(
-    id: Int,
-    nameKor: String,
-    nameEng: String,
-    imageUrl: String,
-    buyCost: Int?,
-    sellPrice: Int,
-    source: String,
-    sourceNote: String,
-    colors: List<String>,
-    available: String,
-    canDiy: Boolean,
-    size: String,
-    milesPrice: Int?,
-    dType: Type,
+@Entity
+data class Tool(
+    @PrimaryKey
+    val id: Int,
+    val nameKor: String,
+    val nameEng: String,
+    val imageUrl: String,
+    val buyCost: Int?,
+    val sellPrice: Int,
+    val source: String,
+    val sourceNote: String,
+    val colors: List<String>,
+    val available: String,
+    val canDiy: Boolean,
+    val size: String,
+    val milesPrice: Int?,
+    val itemType: ItemType,
     val variantId: String,
     val variationName: String,
     val bodyTitle: String,
     val kitCost: Int,
     val canBodyCustom: Boolean,
-    val useCount: Int
-) : Item(
-    id = id,
-    nameKor = nameKor,
-    nameEng = nameEng,
-    imageUrl = imageUrl,
-    buyCost = buyCost,
-    sellPrice = sellPrice,
-    source = source,
-    sourceNote = sourceNote,
-    colors = colors,
-    available = available,
-    canDiy = canDiy,
-    size = size,
-    milesPrice = milesPrice,
-    dType = dType
+    val useCount: Int,
+    var collected: Boolean = false,
+    var wished: Boolean = false
 )
