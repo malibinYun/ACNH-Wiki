@@ -30,7 +30,7 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/circle_rectangle_white"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/constraintLayout2"
+            app:layout_constraintRight_toLeftOf="@id/btn_filter"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <ImageView
@@ -46,7 +46,7 @@
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/et_search"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -62,7 +62,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/btn_filter"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginRight="16dp"
@@ -75,6 +75,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_villagers"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
