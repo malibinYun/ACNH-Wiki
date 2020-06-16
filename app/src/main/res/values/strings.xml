@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ACNH Wiki</string>
+    <string name="gender">성별</string>
+    <string name="birthday">생일</string>
+    <string name="personality">성격</string>
+    <string name="phrase">말버릇</string>
+    <string name="favorites">좋아하는 것</string>
+    <string name="hobby">취미</string>
+    <string name="styles">스타일</string>
+    <string name="music">노래</string>
+    <string name="colors">색상</string>
+    <string name="recommend_present">선물 추천받기</string>
+    <string name="male">남자</string>
+    <string name="female">여자</string>
 </resources>

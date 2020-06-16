@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.ui.villager
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -12,6 +13,8 @@ import com.malibin.acnh.wiki.data.repository.VillagersRepository
 import com.malibin.acnh.wiki.data.source.local.VillagersLocalDataSource
 import com.malibin.acnh.wiki.data.source.remote.VillagersRemoteDataSource
 import com.malibin.acnh.wiki.databinding.ActivityVillagersBinding
+import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity
+import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity.Companion.AMIIBO_INDEX
 
 class VillagersActivity : AppCompatActivity(), VillagerClickListener {
 
@@ -46,6 +49,8 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
     }
 
     override fun onVillagerClick(villager: Villager) {
-
+        val intent = Intent(this, VillagerDetailActivity::class.java)
+        intent.putExtra(AMIIBO_INDEX, villager.amiiboIndex)
+        startActivity(intent)
     }
 }
