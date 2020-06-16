@@ -1,4 +1,4 @@
-package com.malibin.acnh.wiki.ui.villager.utils
+package com.malibin.acnh.wiki.ui.utils
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
