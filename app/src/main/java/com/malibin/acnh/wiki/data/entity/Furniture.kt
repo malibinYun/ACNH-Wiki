@@ -36,4 +36,9 @@ data class Furniture(
     val canPutOutdoor: Boolean,
     var collected: Boolean = false,
     var wished: Boolean = false
-)
+) {
+    companion object {
+        val FURNITURE_LIST =
+            listOf(ItemType.WALL_MOUNTEDS, ItemType.MISCELLANEOUS, ItemType.HOUSEWARES)
+    }
+}

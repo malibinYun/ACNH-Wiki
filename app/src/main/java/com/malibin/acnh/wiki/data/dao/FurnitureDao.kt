@@ -15,6 +15,9 @@ import com.malibin.acnh.wiki.data.entity.Furniture
 @Dao
 interface FurnitureDao {
 
+    @Query("SELECT itemType FROM furniture GROUP BY itemType")
+    suspend fun getItemTypes(): List<ItemType>
+
     @Query("SELECT * FROM furniture")
     suspend fun getAllFurniture(): List<Furniture>
 

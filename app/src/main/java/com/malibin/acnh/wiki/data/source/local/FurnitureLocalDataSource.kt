@@ -14,6 +14,10 @@ class FurnitureLocalDataSource(
     private val furnitureDao: FurnitureDao
 ) : ItemDataSource<Furniture> {
 
+    override suspend fun getItemTypes(): List<ItemType> {
+        return furnitureDao.getItemTypes()
+    }
+
     override suspend fun getAllItems(): List<Furniture> {
         return furnitureDao.getAllFurniture()
     }

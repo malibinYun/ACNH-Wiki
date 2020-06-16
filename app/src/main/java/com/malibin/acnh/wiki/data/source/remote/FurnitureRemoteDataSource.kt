@@ -3,6 +3,7 @@ package com.malibin.acnh.wiki.data.source.remote
 import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Furniture
+import com.malibin.acnh.wiki.data.entity.Furniture.Companion.FURNITURE_LIST
 import com.malibin.acnh.wiki.data.source.ItemDataSource
 import com.malibin.acnh.wiki.data.textparser.FurnitureTextParser
 import com.malibin.acnh.wiki.data.util.getRawItemTextOf
@@ -15,6 +16,10 @@ import com.malibin.acnh.wiki.data.util.getRawItemTextOf
 class FurnitureRemoteDataSource(
     private val firebaseStorage: FirebaseStorage
 ) : ItemDataSource<Furniture> {
+
+    override suspend fun getItemTypes(): List<ItemType> {
+        throw UnsupportedOperationException("Cannot call getItemTypes in remote source")
+    }
 
     override suspend fun getAllItems(): List<Furniture> {
         return FURNITURE_LIST.flatMap { itemType -> getItemsOf(itemType) }
@@ -62,11 +67,6 @@ class FurnitureRemoteDataSource(
 
     override suspend fun checkWished(item: Furniture, isChecked: Boolean) {
         throw UnsupportedOperationException("Cannot call checkWished in remote source")
-    }
-
-    companion object {
-        private val FURNITURE_LIST =
-            listOf(ItemType.WALL_MOUNTEDS, ItemType.MISCELLANEOUS, ItemType.HOUSEWARES)
     }
 
 }

@@ -9,6 +9,8 @@ import com.malibin.acnh.wiki.data.ItemType
 
 interface ItemDataSource<T> {
 
+    suspend fun getItemTypes(): List<ItemType>
+
     suspend fun getAllItems(): List<T>
 
     suspend fun getItemsOf(itemType: ItemType): List<T>
