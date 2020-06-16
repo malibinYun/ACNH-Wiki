@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.remote
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.source.VillagersDataSource
@@ -18,6 +19,7 @@ class VillagersRemoteDataSource(
 ) : VillagersDataSource {
 
     override suspend fun getAllVillagers(): List<Villager> {
+        Log.d("Malibin Debug","getAllVillagers Loaded from remote")
         val snapshot = fireStore.getCollectionSnapshot(VILLAGERS_PATH).await()
         return snapshot.toVillagers()
     }

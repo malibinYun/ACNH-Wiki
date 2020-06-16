@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.repository
 
+import android.util.Log
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.source.VillagersDataSource
 
@@ -18,6 +19,7 @@ class VillagersRepository(
 
     override suspend fun getAllVillagers(): List<Villager> {
         if (cachedVillagers.isNotEmpty() && isFullLoaded) {
+            Log.d("Malibin Debug","getAllVillagers Loaded from cache")
             return cachedVillagers.values.toList().sortedBy { it.amiiboIndex }
         }
         val localVillagers = villagersLocalDataSource.getAllVillagers()

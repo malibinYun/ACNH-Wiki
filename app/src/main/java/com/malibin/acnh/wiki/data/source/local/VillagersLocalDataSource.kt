@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.local
 
+import android.util.Log
 import com.malibin.acnh.wiki.data.dao.VillagersDao
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.source.VillagersDataSource
@@ -9,6 +10,7 @@ class VillagersLocalDataSource(
 ) : VillagersDataSource {
 
     override suspend fun getAllVillagers(): List<Villager> {
+        Log.d("Malibin Debug", "getAllVillagers Loaded from local")
         return villagersDao.getAllVillagers()
     }
 
@@ -25,6 +27,7 @@ class VillagersLocalDataSource(
     }
 
     override suspend fun saveVillagers(villagers: List<Villager>) {
+        Log.d("Malibin Debug", "VillagersSaved")
         villagersDao.insertVillagers(villagers)
     }
 
@@ -33,10 +36,12 @@ class VillagersLocalDataSource(
     }
 
     override suspend fun checkFavoriteVillager(villager: Villager, isChecked: Boolean) {
+        Log.d("Malibin Debug", "${villager.nameKor} is Favorite $isChecked")
         villagersDao.updateIsFavorite(villager.amiiboIndex, isChecked)
     }
 
     override suspend fun checkHomeVillager(villager: Villager, isChecked: Boolean) {
+        Log.d("Malibin Debug", "${villager.nameKor} is in Home $isChecked")
         villagersDao.updateIsInHome(villager.amiiboIndex, isChecked)
     }
 
