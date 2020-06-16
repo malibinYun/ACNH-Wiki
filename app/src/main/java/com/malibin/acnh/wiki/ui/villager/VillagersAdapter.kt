@@ -19,7 +19,7 @@ class VillagersAdapter : ListAdapter<Villager, VillagersAdapter.ViewHolder>(Diff
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemVillagerBinding.inflate(inflater)
+        val binding = ItemVillagerBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
