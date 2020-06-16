@@ -3,7 +3,7 @@ package com.malibin.acnh.wiki.data.source.local
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.dao.FurnitureDao
 import com.malibin.acnh.wiki.data.entity.Furniture
-import com.malibin.acnh.wiki.data.source.ItemDataSource
+import com.malibin.acnh.wiki.data.source.FurnitureDataSource
 
 /**
  * Created By Malibin
@@ -12,7 +12,7 @@ import com.malibin.acnh.wiki.data.source.ItemDataSource
 
 class FurnitureLocalDataSource(
     private val furnitureDao: FurnitureDao
-) : ItemDataSource<Furniture> {
+) : FurnitureDataSource {
 
     override suspend fun getItemTypes(): List<ItemType> {
         return furnitureDao.getItemTypes()

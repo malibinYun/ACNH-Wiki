@@ -3,6 +3,7 @@ package com.malibin.acnh.wiki.data.repository
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Furniture
 import com.malibin.acnh.wiki.data.entity.Furniture.Companion.FURNITURE_LIST
+import com.malibin.acnh.wiki.data.source.FurnitureDataSource
 import com.malibin.acnh.wiki.data.source.ItemDataSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,9 +15,9 @@ import kotlinx.coroutines.launch
  */
 
 class FurnitureRepository(
-    private val furnitureLocalDataSource: ItemDataSource<Furniture>,
-    private val furnitureRemoteDataSource: ItemDataSource<Furniture>
-) : ItemDataSource<Furniture> {
+    private val furnitureLocalDataSource: FurnitureDataSource,
+    private val furnitureRemoteDataSource: FurnitureDataSource
+) : FurnitureDataSource {
 
     private val itemTypesCache = mutableSetOf<ItemType>()
 

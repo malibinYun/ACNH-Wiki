@@ -4,10 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.malibin.acnh.wiki.data.ItemType
 
-// WallMounted
-// Miscellaneous
-// Housewares
-
 @Entity
 data class Furniture(
     val itemType: ItemType,
@@ -39,6 +35,11 @@ data class Furniture(
 ) {
     companion object {
         val FURNITURE_LIST =
-            listOf(ItemType.WALL_MOUNTEDS, ItemType.MISCELLANEOUS, ItemType.HOUSEWARES)
+            listOf(
+                ItemType.WALL_MOUNTEDS,
+                ItemType.MISCELLANEOUS,
+                ItemType.HOUSEWARES,
+                ItemType.RUGS
+            )
     }
 }

@@ -4,12 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.malibin.acnh.wiki.data.ItemType
 
-// Rug
 // Floor
 // Wallpaper
 
 @Entity
-data class HouseFurniture(
+data class HouseInterior(
     @PrimaryKey
     val id: Int,
     val nameKor: String,
@@ -27,4 +26,12 @@ data class HouseFurniture(
     val itemType: ItemType,
     var collected: Boolean = false,
     var wished: Boolean = false
-)
+) {
+    companion object {
+        val HOUSE_INTERIOR_LIST =
+            listOf(
+                ItemType.FLOORS,
+                ItemType.WALLPAPERS
+            )
+    }
+}

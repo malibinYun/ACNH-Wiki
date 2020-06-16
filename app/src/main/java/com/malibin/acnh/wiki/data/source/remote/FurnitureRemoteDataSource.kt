@@ -4,7 +4,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Furniture
 import com.malibin.acnh.wiki.data.entity.Furniture.Companion.FURNITURE_LIST
-import com.malibin.acnh.wiki.data.source.ItemDataSource
+import com.malibin.acnh.wiki.data.source.FurnitureDataSource
 import com.malibin.acnh.wiki.data.textparser.FurnitureTextParser
 import com.malibin.acnh.wiki.data.util.getRawItemTextOf
 
@@ -15,7 +15,7 @@ import com.malibin.acnh.wiki.data.util.getRawItemTextOf
 
 class FurnitureRemoteDataSource(
     private val firebaseStorage: FirebaseStorage
-) : ItemDataSource<Furniture> {
+) : FurnitureDataSource {
 
     override suspend fun getItemTypes(): List<ItemType> {
         throw UnsupportedOperationException("Cannot call getItemTypes in remote source")

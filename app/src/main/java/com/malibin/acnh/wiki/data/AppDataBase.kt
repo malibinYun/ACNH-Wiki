@@ -15,7 +15,7 @@ import com.malibin.acnh.wiki.data.util.ListTypeConverter
         Villager::class,
         Wearable::class,
         Furniture::class,
-        HouseFurniture::class,
+        HouseInterior::class,
         Fence::class,
         Music::class,
         Poster::class,
