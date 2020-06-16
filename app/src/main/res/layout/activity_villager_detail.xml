@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="villager"
-            type="com.malibin.acnh.wiki.data.entity.Villager" />
+            name="villagerViewModel"
+            type="com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,8 +18,11 @@
         tools:context=".ui.villager.detail.VillagerDetailActivity">
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:visibility="@{villagerViewModel.isLoading() ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="240dp"
                     android:layout_marginTop="28dp"
-                    app:imageUrl="@{villager.detailUrl}"
+                    app:imageUrl="@{villagerViewModel.villager.detailUrl}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -58,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:layout_marginRight="4dp"
-                        android:text="@{villager.nameKor}"
+                        android:text="@{villagerViewModel.villager.nameKor}"
                         android:textColor="@color/textBlack"
                         android:textSize="24dp"
                         android:textStyle="bold"
@@ -86,7 +91,7 @@
                             android:layout_marginTop="2dp"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="2dp"
-                            android:text="@{villager.species}"
+                            android:text="@{villagerViewModel.villager.species}"
                             android:textColor="@color/lightSkyBlue"
                             android:textSize="12dp"
                             android:textStyle="bold"
@@ -153,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:text='@{villager.gender == "m" ? @string/male : @string/female }'
+                        android:text='@{villagerViewModel.villager.gender.equals("m") ? @string/male : @string/female }'
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView5"
@@ -167,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
-                        app:birthdayText="@{villager.birth}"
+                        app:birthdayText="@{villagerViewModel.villager.birth}"
                         app:layout_constraintStart_toStartOf="@+id/tv_gender"
                         app:layout_constraintTop_toTopOf="@+id/textView6"
                         tools:text="10월 01일" />
@@ -176,7 +181,7 @@
                         android:id="@+id/tv_personality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{villager.personality}"
+                        android:text="@{villagerViewModel.villager.personality}"
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_birthday"
@@ -187,7 +192,7 @@
                         android:id="@+id/tv_phrase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{villager.phraseKor}"
+                        android:text="@{villagerViewModel.villager.phraseKor}"
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_personality"
@@ -292,7 +297,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:text="@{villager.personality}"
+                        android:text="@{villagerViewModel.villager.personality}"
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
                         app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -307,14 +312,14 @@
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_hobby"
                         app:layout_constraintTop_toTopOf="@+id/textView15"
-                        app:stylesText="@{villager.likeStyles}"
+                        app:stylesText="@{villagerViewModel.villager.likeStyles}"
                         tools:text="우아한 / 쿨한" />
 
                     <TextView
                         android:id="@+id/tv_music"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{villager.likeMusic}"
+                        android:text="@{villagerViewModel.villager.likeMusic}"
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_style"
@@ -376,7 +381,7 @@
                         android:id="@+id/imageView4"
                         android:layout_width="wrap_content"
                         android:layout_height="200dp"
-                        app:imageUrl="@{villager.exteriorUrl}"
+                        app:imageUrl="@{villagerViewModel.villager.exteriorUrl}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -415,5 +420,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{villagerViewModel.isLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

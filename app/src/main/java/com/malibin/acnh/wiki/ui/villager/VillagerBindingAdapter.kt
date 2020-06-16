@@ -12,12 +12,14 @@ import java.util.*
  */
 
 @BindingAdapter("birthdayText")
-fun bindingBirthday(textView: TextView, date: Date) {
+fun bindingBirthday(textView: TextView, date: Date?) {
+    if (date == null) return
     val dateFormat = SimpleDateFormat("MM월 dd일", Locale.KOREA)
     textView.text = dateFormat.format(date)
 }
 
 @BindingAdapter("stylesText")
-fun bindingStyles(textView: TextView, styles: List<String>) {
+fun bindingStyles(textView: TextView, styles: List<String>?) {
+    if (styles == null) return
     textView.text = TextUtils.join(" / ", styles)
 }

@@ -1,7 +1,13 @@
 package com.malibin.acnh.wiki.ui.villager.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.google.firebase.firestore.FirebaseFirestore
+import com.malibin.acnh.wiki.data.AppDataBase
+import com.malibin.acnh.wiki.data.repository.VillagersRepository
+import com.malibin.acnh.wiki.data.source.local.VillagersLocalDataSource
+import com.malibin.acnh.wiki.data.source.remote.VillagersRemoteDataSource
 import com.malibin.acnh.wiki.databinding.ActivityVillagerDetailBinding
 
 class VillagerDetailActivity : AppCompatActivity() {
@@ -11,6 +17,18 @@ class VillagerDetailActivity : AppCompatActivity() {
         val binding = ActivityVillagerDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val database = Room.databaseBuilder(this, AppDataBase::class.java, "db")
+            .build()
+        val viewModel = VillagerDetailViewModel(
+            VillagersRepository(
+                VillagersLocalDataSource(database.villagersDao()),
+                VillagersRemoteDataSource(FirebaseFirestore.getInstance())
+            )
+        )
+
+        binding.villagerViewModel = viewModel
+        binding.lifecycleOwner = this
+        viewModel.loadVillagerOf(getAmiiboIndex())
 
     }
 
