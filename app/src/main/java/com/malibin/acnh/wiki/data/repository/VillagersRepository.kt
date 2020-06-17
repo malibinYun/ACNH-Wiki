@@ -14,28 +14,27 @@ class VillagersRepository(
     private val villagersRemoteDataSource: VillagersDataSource
 ) : VillagersDataSource {
 
-    private val cachedVillagers = HashMap<Int, Villager>()
     private var isFullLoaded = false
+    private var isInHomeLoaded = false
+    private var isFavoritesLoaded = false
+    private val cachedVillagers = HashMap<Int, Villager>()
 
+    @Synchronized
     override suspend fun getAllVillagers(): List<Villager> {
         if (cachedVillagers.isNotEmpty() && isFullLoaded) {
-            Log.d("Malibin Debug","getAllVillagers Loaded from cache")
+            Log.d("Malibin Debug", "getAllVillagers Loaded from cache")
             return cachedVillagers.values.toList().sortedBy { it.amiiboIndex }
         }
-        val localVillagers = villagersLocalDataSource.getAllVillagers()
         isFullLoaded = true
+        val localVillagers = villagersLocalDataSource.getAllVillagers()
         if (localVillagers.isEmpty()) {
-            return loadVillagersFromRemoteAndGet()
+            val remoteVillagers = villagersRemoteDataSource.getAllVillagers()
+            cacheVillagers(remoteVillagers)
+            villagersLocalDataSource.saveVillagers(remoteVillagers)
+            return remoteVillagers
         }
         cacheVillagers(localVillagers)
         return localVillagers
-    }
-
-    private suspend fun loadVillagersFromRemoteAndGet(): List<Villager> {
-        val remoteVillagers = villagersRemoteDataSource.getAllVillagers()
-        cacheVillagers(remoteVillagers)
-        villagersLocalDataSource.saveVillagers(remoteVillagers)
-        return remoteVillagers
     }
 
     private fun cacheVillagers(villagers: List<Villager>) {
@@ -44,17 +43,17 @@ class VillagersRepository(
             .forEach { cachedVillagers[it.amiiboIndex] = it }
     }
 
+    @Synchronized
     override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
         return getCachedVillagerById(amiiboIndex)
             ?: villagersLocalDataSource.fetchVillager(amiiboIndex)
     }
 
-    // 거주, 좋아하는 주민중 하나라도 불리면 나머지하나가 작동제대로안함.
-    // 고쳐야함..
     override suspend fun getVillagersInHome(): List<Villager> {
-        if (cachedVillagers.isEmpty()) {
+        if (!isInHomeLoaded && !isFullLoaded) {
             val villagersInHome = villagersLocalDataSource.getVillagersInHome()
             cacheVillagers(villagersInHome)
+            isInHomeLoaded = true
             return villagersInHome
         }
         return cachedVillagers.values
@@ -63,9 +62,10 @@ class VillagersRepository(
     }
 
     override suspend fun getFavoriteVillagers(): List<Villager> {
-        if (cachedVillagers.isEmpty()) {
+        if (!isFavoritesLoaded && !isFullLoaded) {
             val favoriteVillagers = villagersLocalDataSource.getFavoriteVillagers()
             cacheVillagers(favoriteVillagers)
+            isFavoritesLoaded = true
             return favoriteVillagers
         }
         return cachedVillagers.values
@@ -74,7 +74,7 @@ class VillagersRepository(
     }
 
     override suspend fun saveVillagers(villagers: List<Villager>) {
-        // Not Available
+        throw UnsupportedOperationException("cannot call saveVillagers in repository")
     }
 
     override suspend fun deleteAllVillagers() {
@@ -96,6 +96,9 @@ class VillagersRepository(
         }
     }
 
-    private fun getCachedVillagerById(amiiboIndex: Int) = cachedVillagers[amiiboIndex]
+    private fun getCachedVillagerById(amiiboIndex: Int): Villager? {
+        Log.d("Malibin Debug", "fetchVillager Loaded from cache")
+        return cachedVillagers[amiiboIndex]
+    }
 
 }

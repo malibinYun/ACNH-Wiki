@@ -15,6 +15,7 @@ class VillagersLocalDataSource(
     }
 
     override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
+        Log.d("Malibin Debug", "fetchVillager Loaded from local")
         return villagersDao.getVillagerById(amiiboIndex)
     }
 
