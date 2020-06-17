@@ -12,7 +12,7 @@ class HouseInteriorTextParser {
     companion object {
         private const val YES = "Yes"
 
-        fun convertToHouseInteriorList(rawData: String, itemType: ItemType): List<HouseInterior> {
+        fun convert(rawData: String, itemType: ItemType): List<HouseInterior> {
             return rawData.split("\n")
                 .run { subList(1, this.size - 1) }
                 .map { convertToHouseInterior(it.split("\t"), itemType) }

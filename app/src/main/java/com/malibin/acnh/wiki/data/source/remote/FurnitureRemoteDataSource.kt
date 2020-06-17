@@ -30,7 +30,7 @@ class FurnitureRemoteDataSource(
             throw IllegalArgumentException("Furniture only have $FURNITURE_LIST. $itemType is not contain")
         }
         val rawText = firebaseStorage.getRawItemTextOf(itemType)
-        return FurnitureTextParser.convertToFurnitureList(rawText, itemType)
+        return FurnitureTextParser.convert(rawText, itemType)
     }
 
     override suspend fun getItemsOf(specificIds: List<Int>): List<Furniture> {

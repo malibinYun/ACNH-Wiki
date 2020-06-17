@@ -12,7 +12,7 @@ class FurnitureTextParser {
     companion object {
         private const val YES = "Yes"
 
-        fun convertToFurnitureList(rawData: String, itemType: ItemType): List<Furniture> {
+        fun convert(rawData: String, itemType: ItemType): List<Furniture> {
             return rawData.split("\n")
                 .run { subList(1, this.size - 1) }
                 .map { convertToFurniture(it.split("\t"), itemType) }
