@@ -7,9 +7,9 @@ import com.malibin.acnh.wiki.data.entity.HouseInterior
  * on 6월 17, 2020
  */
 
-interface HouseInteriorDataSource : ItemDataSource<HouseInterior>,
+interface HouseInteriorsDataSource : ItemDataSource<HouseInterior>,
     MultiItemTypeSource<HouseInterior> {
 
-    suspend fun fetchItem(itemName: String)
+    suspend fun fetchItem(itemName: String): HouseInterior?
 
 }

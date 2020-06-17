@@ -4,7 +4,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.HouseInterior
 import com.malibin.acnh.wiki.data.entity.HouseInterior.Companion.HOUSE_INTERIOR_LIST
-import com.malibin.acnh.wiki.data.source.HouseInteriorDataSource
+import com.malibin.acnh.wiki.data.source.HouseInteriorsDataSource
 import com.malibin.acnh.wiki.data.textparser.HouseInteriorTextParser
 import com.malibin.acnh.wiki.data.util.getRawItemTextOf
 
@@ -13,9 +13,9 @@ import com.malibin.acnh.wiki.data.util.getRawItemTextOf
  * on 6월 17, 2020
  */
 
-class HouseInteriorRemoteDataSource(
+class HouseInteriorsRemoteDataSource(
     private val firebaseStorage: FirebaseStorage
-) : HouseInteriorDataSource {
+) : HouseInteriorsDataSource {
 
     override suspend fun getItemTypes(): List<ItemType> {
         throw UnsupportedOperationException("Cannot call getItemTypes in remote source")
@@ -33,8 +33,8 @@ class HouseInteriorRemoteDataSource(
         return HouseInteriorTextParser.convert(rawText, itemType)
     }
 
-    override suspend fun fetchItem(itemName: String) {
-
+    override suspend fun fetchItem(itemName: String): HouseInterior? {
+        throw UnsupportedOperationException("Cannot call fetchItem in remote source")
     }
 
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<HouseInterior> {
