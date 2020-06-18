@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.local
 
+import android.util.Log
 import com.malibin.acnh.wiki.data.dao.MusicDao
 import com.malibin.acnh.wiki.data.entity.Music
 import com.malibin.acnh.wiki.data.source.ItemDataSource
@@ -13,6 +14,7 @@ class MusicLocalDataSource(
 ) : ItemDataSource<Music> {
 
     override suspend fun getAllItems(): List<Music> {
+        Log.d("Malibin Debug", "getAllItems Loaded from local")
         return musicDao.getAllMusics()
     }
 
@@ -29,6 +31,7 @@ class MusicLocalDataSource(
     }
 
     override suspend fun saveItems(itemList: List<Music>) {
+        Log.d("Malibin Debug", "saveItems")
         musicDao.insertMusics(itemList)
     }
 

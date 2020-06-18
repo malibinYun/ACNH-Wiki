@@ -48,7 +48,7 @@ class FurnitureRepository(
         }
         itemTypesCache.add(itemType)
         val specificTypeOfFurniture = furnitureRemoteDataSource.getItemsOf(itemType)
-        saveItems(specificTypeOfFurniture)
+        furnitureLocalDataSource.saveItems(specificTypeOfFurniture)
         return specificTypeOfFurniture
     }
 
@@ -58,6 +58,10 @@ class FurnitureRepository(
             getAllItems()
         }
         return furnitureLocalDataSource.getItemsOf(specificIds)
+    }
+
+    override suspend fun findItemById(id: Int): Furniture? {
+        return furnitureLocalDataSource.findItemById(id)
     }
 
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<Furniture> {
@@ -77,7 +81,7 @@ class FurnitureRepository(
     }
 
     override suspend fun saveItems(itemList: List<Furniture>) {
-        furnitureLocalDataSource.saveItems(itemList)
+        throw UnsupportedOperationException("cannot call saveItems in repository")
     }
 
     override suspend fun deleteAllItems() {

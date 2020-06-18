@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.remote
 
+import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Music
@@ -17,6 +18,7 @@ class MusicRemoteDataSource(
 ) : ItemDataSource<Music> {
 
     override suspend fun getAllItems(): List<Music> {
+        Log.d("Malibin Debug","getAllItems Loaded from remote")
         val rawText = firebaseStorage.getRawItemTextOf(ItemType.MUSICS)
         return MusicTextParser.convert(rawText, ItemType.MUSICS)
     }

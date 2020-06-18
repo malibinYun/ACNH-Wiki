@@ -1,10 +1,13 @@
 package com.malibin.acnh.wiki.di.data
 
 import com.malibin.acnh.wiki.data.repository.FurnitureRepository
+import com.malibin.acnh.wiki.data.repository.MusicRepository
 import com.malibin.acnh.wiki.data.repository.VillagersRepository
 import com.malibin.acnh.wiki.data.source.local.FurnitureLocalDataSource
+import com.malibin.acnh.wiki.data.source.local.MusicLocalDataSource
 import com.malibin.acnh.wiki.data.source.local.VillagersLocalDataSource
 import com.malibin.acnh.wiki.data.source.remote.FurnitureRemoteDataSource
+import com.malibin.acnh.wiki.data.source.remote.MusicRemoteDataSource
 import com.malibin.acnh.wiki.data.source.remote.VillagersRemoteDataSource
 import org.koin.dsl.module
 
@@ -24,6 +27,12 @@ val repositoryModule = module {
         FurnitureRepository(
             get<FurnitureLocalDataSource>(),
             get<FurnitureRemoteDataSource>()
+        )
+    }
+    single {
+        MusicRepository(
+            get<MusicLocalDataSource>(),
+            get<MusicRemoteDataSource>()
         )
     }
 }
