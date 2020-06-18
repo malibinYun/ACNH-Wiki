@@ -2,10 +2,7 @@ package com.malibin.acnh.wiki.di.data
 
 import androidx.room.Room
 import com.malibin.acnh.wiki.data.AppDataBase
-import com.malibin.acnh.wiki.data.source.local.FurnitureLocalDataSource
-import com.malibin.acnh.wiki.data.source.local.HouseInteriorLocalDataSource
-import com.malibin.acnh.wiki.data.source.local.VillagersLocalDataSource
-import com.malibin.acnh.wiki.data.source.local.WearablesLocalDataSource
+import com.malibin.acnh.wiki.data.source.local.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -29,6 +26,7 @@ val localDataSourceModule = module {
     single { FurnitureLocalDataSource(get<AppDataBase>().furnitureDao()) }
     single { HouseInteriorLocalDataSource(get<AppDataBase>().houseInteriorsDao()) }
     single { WearablesLocalDataSource(get<AppDataBase>().wearablesDao()) }
+    single { MusicLocalDataSource(get<AppDataBase>().musicDao()) }
 }
 
 val localModules = listOf(
