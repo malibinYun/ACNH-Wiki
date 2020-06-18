@@ -14,3 +14,7 @@ val viewModelModule = module {
     viewModel { VillagersViewModel(get()) }
     viewModel { VillagerDetailViewModel(get()) }
 }
+
+val viewModelModules = listOf(
+    viewModelModule
+)

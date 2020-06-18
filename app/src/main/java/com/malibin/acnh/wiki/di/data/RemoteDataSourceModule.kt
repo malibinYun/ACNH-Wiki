@@ -1,10 +1,7 @@
 package com.malibin.acnh.wiki.di.data
 
 import com.google.firebase.storage.FirebaseStorage
-import com.malibin.acnh.wiki.data.source.remote.FurnitureRemoteDataSource
-import com.malibin.acnh.wiki.data.source.remote.HouseInteriorsRemoteDataSource
-import com.malibin.acnh.wiki.data.source.remote.VillagersRemoteDataSource
-import com.malibin.acnh.wiki.data.source.remote.WearablesRemoteDataSource
+import com.malibin.acnh.wiki.data.source.remote.*
 import org.koin.dsl.module
 
 /**
@@ -21,6 +18,7 @@ val remoteDataSourceModule = module {
     single { FurnitureRemoteDataSource(get()) }
     single { HouseInteriorsRemoteDataSource(get()) }
     single { WearablesRemoteDataSource(get()) }
+    single { MusicRemoteDataSource(get()) }
 }
 
 val remoteModules = listOf(

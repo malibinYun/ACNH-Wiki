@@ -9,11 +9,9 @@ import com.malibin.acnh.wiki.di.data.repositoryModules
  * on 6월 18, 2020
  */
 
-
-
-
 val diModules = listOf(
     localModules,
     remoteModules,
-    repositoryModules
+    repositoryModules,
+    viewModelModules
 ).flatten()
