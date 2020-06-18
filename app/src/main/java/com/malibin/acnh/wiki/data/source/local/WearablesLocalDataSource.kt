@@ -3,16 +3,16 @@ package com.malibin.acnh.wiki.data.source.local
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.dao.WearableDao
 import com.malibin.acnh.wiki.data.entity.Wearable
-import com.malibin.acnh.wiki.data.source.WearableDataSource
+import com.malibin.acnh.wiki.data.source.WearablesDataSource
 
 /**
  * Created By Malibin
  * on 6월 18, 2020
  */
 
-class WearableLocalDataSource(
+class WearablesLocalDataSource(
     private val wearableDao: WearableDao
-) : WearableDataSource {
+) : WearablesDataSource {
 
     override suspend fun getItemTypes(): List<ItemType> {
         return wearableDao.getItemTypes()

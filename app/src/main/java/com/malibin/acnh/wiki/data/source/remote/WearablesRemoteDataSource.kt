@@ -4,7 +4,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Wearable
 import com.malibin.acnh.wiki.data.entity.Wearable.Companion.WEARABLE_LIST
-import com.malibin.acnh.wiki.data.source.WearableDataSource
+import com.malibin.acnh.wiki.data.source.WearablesDataSource
 import com.malibin.acnh.wiki.data.textparser.WearableTextParser
 import com.malibin.acnh.wiki.data.util.getRawItemTextOf
 
@@ -13,9 +13,9 @@ import com.malibin.acnh.wiki.data.util.getRawItemTextOf
  * on 6월 18, 2020
  */
 
-class WearableRemoteDataSource(
+class WearablesRemoteDataSource(
     private val firebaseStorage: FirebaseStorage
-) : WearableDataSource {
+) : WearablesDataSource {
 
     override suspend fun getItemTypes(): List<ItemType> {
         throw UnsupportedOperationException("Cannot call getItemTypes in remote source")

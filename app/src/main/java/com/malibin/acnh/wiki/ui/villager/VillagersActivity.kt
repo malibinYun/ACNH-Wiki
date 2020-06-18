@@ -1,24 +1,19 @@
 package com.malibin.acnh.wiki.ui.villager
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.malibin.acnh.wiki.data.AppDataBase
 import com.malibin.acnh.wiki.data.entity.Villager
-import com.malibin.acnh.wiki.data.repository.VillagersRepository
-import com.malibin.acnh.wiki.data.source.local.VillagersLocalDataSource
-import com.malibin.acnh.wiki.data.source.remote.VillagersRemoteDataSource
 import com.malibin.acnh.wiki.databinding.ActivityVillagersBinding
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity.Companion.AMIIBO_INDEX
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VillagersActivity : AppCompatActivity(), VillagerClickListener {
 
     private lateinit var villagersAdapter: VillagersAdapter
+    private val villagersViewModel: VillagersViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,18 +23,13 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
 
         initView(binding)
 
-        val database = Room.databaseBuilder(this, AppDataBase::class.java, "db")
-            .build()
-        val viewModel = VillagersViewModel(
-            VillagersRepository(
-                VillagersLocalDataSource(database.villagersDao()),
-                VillagersRemoteDataSource(FirebaseFirestore.getInstance())
-            )
-        )
+        subscribeVillagers()
+    }
 
-        viewModel.villagers.observe(this, Observer {
-            villagersAdapter.submitList(it)
-        })
+    override fun onVillagerClick(villager: Villager) {
+        val intent = Intent(this, VillagerDetailActivity::class.java)
+        intent.putExtra(AMIIBO_INDEX, villager.amiiboIndex)
+        startActivity(intent)
     }
 
     private fun initView(binding: ActivityVillagersBinding) {
@@ -48,9 +38,9 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
         binding.rvVillagers.adapter = villagersAdapter
     }
 
-    override fun onVillagerClick(villager: Villager) {
-        val intent = Intent(this, VillagerDetailActivity::class.java)
-        intent.putExtra(AMIIBO_INDEX, villager.amiiboIndex)
-        startActivity(intent)
+    private fun subscribeVillagers() {
+        villagersViewModel.villagers.observe(this, Observer {
+            villagersAdapter.submitList(it)
+        })
     }
 }
