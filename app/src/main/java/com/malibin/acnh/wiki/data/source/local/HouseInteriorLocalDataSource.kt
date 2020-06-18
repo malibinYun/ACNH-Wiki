@@ -22,7 +22,11 @@ class HouseInteriorLocalDataSource(
         return houseInteriorsDao.getAllHouseInteriors()
     }
 
-    override suspend fun fetchItem(itemName: String): HouseInterior? {
+    override suspend fun findItemById(id: Int): HouseInterior? {
+        return houseInteriorsDao.findHouseInteriorById(id)
+    }
+
+    override suspend fun findItemByName(itemName: String): HouseInterior? {
         return houseInteriorsDao.findHouseInteriorByName(itemName)
     }
 

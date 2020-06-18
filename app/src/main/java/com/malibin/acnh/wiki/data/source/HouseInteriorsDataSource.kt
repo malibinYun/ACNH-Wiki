@@ -10,6 +10,6 @@ import com.malibin.acnh.wiki.data.entity.HouseInterior
 interface HouseInteriorsDataSource : ItemDataSource<HouseInterior>,
     MultiItemTypeSource<HouseInterior> {
 
-    suspend fun fetchItem(itemName: String): HouseInterior?
+    suspend fun findItemByName(itemName: String): HouseInterior?
 
 }

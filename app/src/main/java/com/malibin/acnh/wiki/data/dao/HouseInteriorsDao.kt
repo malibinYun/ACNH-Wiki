@@ -21,6 +21,9 @@ interface HouseInteriorsDao {
     @Query("SELECT * FROM houseinterior")
     suspend fun getAllHouseInteriors(): List<HouseInterior>
 
+    @Query("SELECT * FROM houseinterior WHERE id = :id")
+    suspend fun findHouseInteriorById(id: Int): HouseInterior?
+
     @Query("SELECT * FROM houseinterior WHERE nameKor = :itemName")
     suspend fun findHouseInteriorByName(itemName: String): HouseInterior?
 

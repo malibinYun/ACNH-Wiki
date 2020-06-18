@@ -22,12 +22,16 @@ class WearablesLocalDataSource(
         return wearableDao.getAllWearables()
     }
 
+    override suspend fun findItemById(id: Int): Wearable? {
+        return wearableDao.findWearableById(id)
+    }
+
     override suspend fun findItemsByName(itemName: String): List<Wearable> {
-        return wearableDao.getWearablesOf(itemName)
+        return wearableDao.findWearablesOf(itemName)
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<Wearable> {
-        return wearableDao.getWearablesOf(itemType)
+        return wearableDao.findWearablesOf(itemType)
     }
 
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<Wearable> {

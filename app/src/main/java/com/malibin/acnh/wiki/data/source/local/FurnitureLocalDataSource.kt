@@ -30,6 +30,10 @@ class FurnitureLocalDataSource(
         return furnitureDao.getFurnitureListOf(specificIds)
     }
 
+    override suspend fun findItemById(id: Int): Furniture? {
+        return furnitureDao.findFurnitureById(id)
+    }
+
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<Furniture> {
         return furnitureDao.getCollectedFurnitureListOf(itemType)
     }

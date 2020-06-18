@@ -33,7 +33,11 @@ class HouseInteriorsRemoteDataSource(
         return HouseInteriorTextParser.convert(rawText, itemType)
     }
 
-    override suspend fun fetchItem(itemName: String): HouseInterior? {
+    override suspend fun findItemById(id: Int): HouseInterior? {
+        throw UnsupportedOperationException("Cannot call findItemById in remote source")
+    }
+
+    override suspend fun findItemByName(itemName: String): HouseInterior? {
         throw UnsupportedOperationException("Cannot call fetchItem in remote source")
     }
 

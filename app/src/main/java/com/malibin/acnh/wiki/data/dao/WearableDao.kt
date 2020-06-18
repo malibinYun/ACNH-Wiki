@@ -20,10 +20,13 @@ interface WearableDao {
     suspend fun getAllWearables(): List<Wearable>
 
     @Query("SELECT * FROM wearable WHERE itemType = :itemType GROUP BY nameKor")
-    suspend fun getWearablesOf(itemType: ItemType): List<Wearable>
+    suspend fun findWearablesOf(itemType: ItemType): List<Wearable>
 
     @Query("SELECT * FROM wearable WHERE nameKor = :itemName")
-    suspend fun getWearablesOf(itemName: String): List<Wearable>
+    suspend fun findWearablesOf(itemName: String): List<Wearable>
+
+    @Query("SELECT * FROM wearable WHERE id = :id")
+    suspend fun findWearableById(id: Int): Wearable?
 
     @Query("SELECT * FROM wearable WHERE collected = 1")
     suspend fun getCollectedWearables(): List<Wearable>

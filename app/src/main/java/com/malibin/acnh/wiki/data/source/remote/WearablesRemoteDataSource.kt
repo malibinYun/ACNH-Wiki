@@ -33,6 +33,10 @@ class WearablesRemoteDataSource(
         return WearableTextParser.convert(rawText, itemType)
     }
 
+    override suspend fun findItemById(id: Int): Wearable? {
+        throw UnsupportedOperationException("Cannot call findItemById in remote source")
+    }
+
     override suspend fun findItemsByName(itemName: String): List<Wearable> {
         throw UnsupportedOperationException("Cannot call findItemsByName in remote source")
     }

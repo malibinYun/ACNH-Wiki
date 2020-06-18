@@ -21,6 +21,10 @@ class MusicRemoteDataSource(
         return MusicTextParser.convert(rawText, ItemType.MUSICS)
     }
 
+    override suspend fun findItemById(id: Int): Music? {
+        throw UnsupportedOperationException("Cannot call findItemById in remote source")
+    }
+
     override suspend fun getCollectedItems(): List<Music> {
         throw UnsupportedOperationException("Cannot call getCollectedItems in remote source")
     }

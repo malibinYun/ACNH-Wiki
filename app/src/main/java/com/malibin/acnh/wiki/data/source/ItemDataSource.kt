@@ -9,6 +9,8 @@ interface ItemDataSource<T> {
 
     suspend fun getAllItems(): List<T>
 
+    suspend fun findItemById(id: Int): T?
+
     suspend fun getCollectedItems(): List<T>
 
     suspend fun getWishedItems(): List<T>
