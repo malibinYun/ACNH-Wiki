@@ -34,4 +34,19 @@ data class Wearable(
     val canVillagerWear: Boolean,
     var collected: Boolean = false,
     var wished: Boolean = false
-)
+) {
+    companion object {
+        val WEARABLE_LIST =
+            listOf(
+                ItemType.TOPS,
+                ItemType.BOTTOMS,
+                ItemType.ONEPIECES,
+                ItemType.HEADWEARS,
+                ItemType.ACCESSORIES,
+                ItemType.SOCKS,
+                ItemType.SHOES,
+                ItemType.BAGS,
+                ItemType.UMBRELLAS
+            )
+    }
+}
