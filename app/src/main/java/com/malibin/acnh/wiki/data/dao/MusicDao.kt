@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -10,6 +11,7 @@ import com.malibin.acnh.wiki.data.entity.Music
  * on 6월 19, 2020
  */
 
+@Dao
 interface MusicDao {
 
     @Query("SELECT * FROM music")

@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -11,6 +12,7 @@ import com.malibin.acnh.wiki.data.entity.Wearable
  * on 6월 18, 2020
  */
 
+@Dao
 interface WearableDao {
 
     @Query("SELECT itemType FROM wearable GROUP BY itemType")
