@@ -1,13 +1,11 @@
 package com.malibin.acnh.wiki.data.source.remote
 
 import android.util.Log
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.source.VillagersDataSource
-import com.malibin.acnh.wiki.data.util.VILLAGERS_PATH
-import com.malibin.acnh.wiki.data.util.getCollectionSnapshot
-import com.malibin.acnh.wiki.data.util.toVillagers
-import kotlinx.coroutines.tasks.await
+import com.malibin.acnh.wiki.data.textparser.VillagerTextParser
+import com.malibin.acnh.wiki.data.util.getRawItemTextOf
 
 /**
  * Created By Yun Hyeok
@@ -15,13 +13,13 @@ import kotlinx.coroutines.tasks.await
  */
 
 class VillagersRemoteDataSource(
-    private val fireStore: FirebaseFirestore
+    private val firebaseStorage: FirebaseStorage
 ) : VillagersDataSource {
 
     override suspend fun getAllVillagers(): List<Villager> {
-        Log.d("Malibin Debug","getAllVillagers Loaded from remote")
-        val snapshot = fireStore.getCollectionSnapshot(VILLAGERS_PATH).await()
-        return snapshot.toVillagers()
+        Log.d("Malibin Debug", "getAllVillagers Loaded from remote")
+        val rawText = firebaseStorage.getRawItemTextOf("villager/villagers")
+        return VillagerTextParser.convert(rawText)
     }
 
     override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
