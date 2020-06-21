@@ -46,6 +46,7 @@ class PickGiftViewModel(
     private suspend fun loadItemsOf(itemType: ItemType) {
         if (itemType == ItemType.MUSICS) {
             _itemsOfPickedType.value = musicRepository.getAllItems().map { it.toItem() }
+            return
         }
         _itemsOfPickedType.value = wearableRepository.getItemsOf(itemType).map { it.toItem() }
     }

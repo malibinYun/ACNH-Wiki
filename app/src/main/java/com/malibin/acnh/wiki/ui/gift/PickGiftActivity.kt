@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import com.malibin.acnh.wiki.R
 import com.malibin.acnh.wiki.databinding.ActivityPickGiftBinding
+import com.malibin.acnh.wiki.ui.utils.addFragmentToActivity
 import com.malibin.acnh.wiki.ui.utils.replaceFragmentInActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,7 +27,14 @@ class PickGiftActivity : AppCompatActivity() {
 
     private fun subscribePickedItemType() {
         pickGiftViewModel.pickedItemType.observe(this, Observer {
-            Log.d("Malibin Debug", "$it")
+            addFragmentToActivity(ItemsFragment(), R.id.fragment_container)
         })
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            super.onBackPressed()
+        }
+        supportFragmentManager.popBackStack()
     }
 }

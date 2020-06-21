@@ -15,8 +15,13 @@ fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, @IdRes conta
         .commit()
 }
 
-fun AppCompatActivity.addFragmentToActivity(fragment: Fragment, tag: String) {
+fun AppCompatActivity.addFragmentToActivity(
+    fragment: Fragment,
+    @IdRes containerId: Int,
+    tag: String? = null
+) {
     supportFragmentManager.beginTransaction()
-        .add(fragment, tag)
+        .add(containerId, fragment, tag)
+        .addToBackStack(fragment::class.simpleName)
         .commit()
 }

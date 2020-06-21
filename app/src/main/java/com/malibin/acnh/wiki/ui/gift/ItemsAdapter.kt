@@ -13,12 +13,12 @@ import com.malibin.acnh.wiki.databinding.ItemGameItemBinding
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
-    private lateinit var items: List<Item>
+    private var items = listOf<Item>()
     private var itemClickListener: ItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemGameItemBinding.inflate(layoutInflater)
+        val binding = ItemGameItemBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding)
     }
 

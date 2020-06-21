@@ -34,7 +34,7 @@ data class Music(
     fun toItem() = Item(
         id = id,
         name = nameKor,
-        imageUrl = imageUrl,
+        imageUrl = albumImageUrl,
         colors = colors,
         type = itemType,
         isCollected = collected,
