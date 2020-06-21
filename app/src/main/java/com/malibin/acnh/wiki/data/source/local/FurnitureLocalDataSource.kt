@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.local
 
+import android.util.Log
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.dao.FurnitureDao
 import com.malibin.acnh.wiki.data.entity.Furniture
@@ -19,10 +20,12 @@ class FurnitureLocalDataSource(
     }
 
     override suspend fun getAllItems(): List<Furniture> {
+        Log.d("Malibin Debug", "getAllItems Loaded from local")
         return furnitureDao.getAllFurniture()
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<Furniture> {
+        Log.d("Malibin Debug", "getItemsOf Loaded from local")
         return furnitureDao.getFurnitureListOf(itemType)
     }
 
@@ -51,6 +54,7 @@ class FurnitureLocalDataSource(
     }
 
     override suspend fun saveItems(itemList: List<Furniture>) {
+        Log.d("Malibin Debug", "saveItems")
         furnitureDao.insertFurniture(itemList)
     }
 

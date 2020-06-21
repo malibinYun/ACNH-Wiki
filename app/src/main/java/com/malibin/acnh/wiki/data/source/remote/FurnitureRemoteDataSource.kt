@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.remote
 
+import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Furniture
@@ -22,10 +23,12 @@ class FurnitureRemoteDataSource(
     }
 
     override suspend fun getAllItems(): List<Furniture> {
+        Log.d("Malibin Debug","getAllItems Loaded from remote")
         return FURNITURE_LIST.flatMap { itemType -> getItemsOf(itemType) }
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<Furniture> {
+        Log.d("Malibin Debug","getItemsOf Loaded from remote")
         if (!FURNITURE_LIST.contains(itemType)) {
             throw IllegalArgumentException("Furniture only have $FURNITURE_LIST. $itemType is not contain")
         }

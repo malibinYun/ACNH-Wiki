@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.local
 
+import android.util.Log
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.dao.HouseInteriorsDao
 import com.malibin.acnh.wiki.data.entity.HouseInterior
@@ -19,6 +20,7 @@ class HouseInteriorLocalDataSource(
     }
 
     override suspend fun getAllItems(): List<HouseInterior> {
+        Log.d("Malibin Debug", "getAllItems Loaded from local")
         return houseInteriorsDao.getAllHouseInteriors()
     }
 
@@ -31,6 +33,7 @@ class HouseInteriorLocalDataSource(
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<HouseInterior> {
+        Log.d("Malibin Debug", "getItemsOf Loaded from local")
         return houseInteriorsDao.getHouseInteriorsOf(itemType)
     }
 
@@ -51,6 +54,7 @@ class HouseInteriorLocalDataSource(
     }
 
     override suspend fun saveItems(itemList: List<HouseInterior>) {
+        Log.d("Malibin Debug", "saveItems")
         houseInteriorsDao.insertHouseInteriors(itemList)
     }
 

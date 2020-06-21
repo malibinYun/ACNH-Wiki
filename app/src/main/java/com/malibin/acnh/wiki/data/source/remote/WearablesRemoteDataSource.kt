@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.remote
 
+import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.Wearable
@@ -22,10 +23,12 @@ class WearablesRemoteDataSource(
     }
 
     override suspend fun getAllItems(): List<Wearable> {
+        Log.d("Malibin Debug","getAllItems Loaded from remote")
         return WEARABLE_LIST.flatMap { itemType -> getItemsOf(itemType) }
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<Wearable> {
+        Log.d("Malibin Debug","getItemsOf Loaded from remote")
         if (!WEARABLE_LIST.contains(itemType)) {
             throw IllegalArgumentException("Wearable only have $WEARABLE_LIST. $itemType is not contain")
         }

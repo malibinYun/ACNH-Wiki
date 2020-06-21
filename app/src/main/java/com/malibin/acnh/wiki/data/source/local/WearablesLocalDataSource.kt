@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.local
 
+import android.util.Log
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.dao.WearableDao
 import com.malibin.acnh.wiki.data.entity.Wearable
@@ -19,6 +20,7 @@ class WearablesLocalDataSource(
     }
 
     override suspend fun getAllItems(): List<Wearable> {
+        Log.d("Malibin Debug", "getAllItems Loaded from local")
         return wearableDao.getAllWearables()
     }
 
@@ -31,6 +33,7 @@ class WearablesLocalDataSource(
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<Wearable> {
+        Log.d("Malibin Debug", "getItemsOf Loaded from local")
         return wearableDao.findWearablesOf(itemType)
     }
 
@@ -51,6 +54,7 @@ class WearablesLocalDataSource(
     }
 
     override suspend fun saveItems(itemList: List<Wearable>) {
+        Log.d("Malibin Debug", "saveItems")
         wearableDao.insertWearables(itemList)
     }
 

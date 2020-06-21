@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.source.remote
 
+import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import com.malibin.acnh.wiki.data.ItemType
 import com.malibin.acnh.wiki.data.entity.HouseInterior
@@ -22,10 +23,12 @@ class HouseInteriorsRemoteDataSource(
     }
 
     override suspend fun getAllItems(): List<HouseInterior> {
+        Log.d("Malibin Debug","getAllItems Loaded from remote")
         return HOUSE_INTERIOR_LIST.flatMap { itemType -> getItemsOf(itemType) }
     }
 
     override suspend fun getItemsOf(itemType: ItemType): List<HouseInterior> {
+        Log.d("Malibin Debug","getItemsOf Loaded from remote")
         if (!HOUSE_INTERIOR_LIST.contains(itemType)) {
             throw IllegalArgumentException("HouseInterior only have ${HOUSE_INTERIOR_LIST}. $itemType is not contain")
         }
