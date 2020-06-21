@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.ui.gift
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -45,7 +46,7 @@ class PickGiftViewModel(
 
     private suspend fun loadItemsOf(itemType: ItemType) {
         if (itemType == ItemType.MUSICS) {
-            _itemsOfPickedType.value = musicRepository.getAllItems().map { it.toItem() }
+            _itemsOfPickedType.value = musicRepository.getAllItems().map { Log.d("Malibin",it.albumImageUrl);it.toItem();  }
             return
         }
         _itemsOfPickedType.value = wearableRepository.getItemsOf(itemType).map { it.toItem() }
