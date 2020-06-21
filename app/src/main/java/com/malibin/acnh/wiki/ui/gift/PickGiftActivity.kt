@@ -2,10 +2,10 @@ package com.malibin.acnh.wiki.ui.gift
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.malibin.acnh.wiki.R
 import com.malibin.acnh.wiki.databinding.ActivityPickGiftBinding
+import com.malibin.acnh.wiki.ui.gift.detail.GiftDetailFragment
 import com.malibin.acnh.wiki.ui.utils.addFragmentToActivity
 import com.malibin.acnh.wiki.ui.utils.replaceFragmentInActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,14 +20,21 @@ class PickGiftActivity : AppCompatActivity() {
         val binding = ActivityPickGiftBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragmentInActivity(PickGiftFragment(), R.id.fragment_container)
+        replaceFragmentInActivity(PickGiftFragment(), CONTAINER_ID)
 
         subscribePickedItemType()
+        subscribePickedItem()
     }
 
     private fun subscribePickedItemType() {
         pickGiftViewModel.pickedItemType.observe(this, Observer {
-            addFragmentToActivity(ItemsFragment(), R.id.fragment_container)
+            addFragmentToActivity(ItemsFragment(), CONTAINER_ID)
+        })
+    }
+
+    private fun subscribePickedItem() {
+        pickGiftViewModel.pickedItemVariations.observe(this, Observer {
+            addFragmentToActivity(GiftDetailFragment(), CONTAINER_ID)
         })
     }
 
@@ -36,5 +43,9 @@ class PickGiftActivity : AppCompatActivity() {
             super.onBackPressed()
         }
         supportFragmentManager.popBackStack()
+    }
+
+    companion object {
+        private const val CONTAINER_ID = R.id.fragment_container
     }
 }

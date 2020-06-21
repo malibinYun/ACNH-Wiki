@@ -3,15 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.malibin.acnh.wiki.ui.gift.PickGiftViewModel" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grayEF">
+        android:background="@color/grayEF"
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            app:imageUrl="@{viewModel.finalPickedItem.imageUrl ?? viewModel.pickedWearable.closetImage}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="8dp"
+                android:text="@{viewModel.pickedWearable.nameKor}"
                 android:textColor="@color/textBlack"
                 android:textSize="22dp"
                 android:textStyle="bold"
@@ -61,6 +73,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="2dp"
+                    android:text="@{viewModel.pickedWearable.itemType.korName}"
                     android:textColor="@color/lightSkyBlue"
                     android:textSize="14dp"
                     android:textStyle="bold"
@@ -101,8 +114,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:text="@{viewModel.pickedWearable.style}"
                 android:textColor="@color/textBlack"
-
                 android:textSize="16dp"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
                 app:layout_constraintTop_toTopOf="@+id/textView9"
@@ -110,12 +123,15 @@
 
             <TextView
                 android:id="@+id/tv_themes"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
                 android:textColor="@color/textBlack"
                 android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_style"
                 app:layout_constraintTop_toTopOf="@+id/textView10"
+                app:textList="@{viewModel.pickedWearable.labelThemes}"
                 tools:text="데일리" />
 
             <TextView
@@ -128,7 +144,7 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_themes" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_variations"
@@ -158,6 +174,7 @@
             android:layout_marginBottom="40dp"
             android:background="@drawable/circle_rectangle_white"
             android:backgroundTint="@color/selector_grayb2_lightskybluepoint"
+            app:enabled="@{viewModel.finalPickedItem == null ? false : true}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -168,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="이 아이템 선물하기"
+                android:text="@string/gift_this_item"
                 android:textColor="@android:color/white"
                 android:textSize="22dp"
                 app:layout_constraintBottom_toBottomOf="parent"

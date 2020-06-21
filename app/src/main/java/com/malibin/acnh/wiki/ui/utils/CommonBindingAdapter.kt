@@ -1,6 +1,9 @@
 package com.malibin.acnh.wiki.ui.utils
 
+import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.malibin.acnh.wiki.R
@@ -16,5 +19,15 @@ fun bindingImageUrl(view: ImageView, imageUrl: String?) {
         .load(imageUrl)
         .placeholder(R.drawable.loading)
         .into(view)
+}
 
+@BindingAdapter("textList")
+fun bindingTextList(view: TextView, texts: List<String>?) {
+    if (texts == null) return
+    view.text = TextUtils.join(", ", texts)
+}
+
+@BindingAdapter("enabled")
+fun bindingEnabled(view: View, isEnable: Boolean?) {
+    view.isEnabled = isEnable ?: false
 }

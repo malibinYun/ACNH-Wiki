@@ -1,11 +1,11 @@
 package com.malibin.acnh.wiki.ui.gift
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.malibin.acnh.wiki.data.Item
 import com.malibin.acnh.wiki.data.ItemType
+import com.malibin.acnh.wiki.data.entity.Wearable
 import com.malibin.acnh.wiki.data.repository.MusicRepository
 import com.malibin.acnh.wiki.data.repository.WearablesRepository
 import com.malibin.acnh.wiki.ui.utils.BaseViewModel
@@ -37,6 +37,10 @@ class PickGiftViewModel(
     val finalPickedItem: LiveData<Item>
         get() = _finalPickedItem
 
+    private val _pickedWearable = MutableLiveData<Wearable>()
+    val pickedWearable: LiveData<Wearable>
+        get() = _pickedWearable
+
     fun pickItemType(itemType: ItemType) = viewModelScope.launch {
         _isLoading.value = true
         _pickedItemType.value = itemType
@@ -46,7 +50,7 @@ class PickGiftViewModel(
 
     private suspend fun loadItemsOf(itemType: ItemType) {
         if (itemType == ItemType.MUSICS) {
-            _itemsOfPickedType.value = musicRepository.getAllItems().map { Log.d("Malibin",it.albumImageUrl);it.toItem();  }
+            _itemsOfPickedType.value = musicRepository.getAllItems().map { it.toItem() }
             return
         }
         _itemsOfPickedType.value = wearableRepository.getItemsOf(itemType).map { it.toItem() }
@@ -54,13 +58,23 @@ class PickGiftViewModel(
 
     fun pickItem(item: Item) = viewModelScope.launch {
         _isLoading.value = true
+        _finalPickedItem.value = null
         if (item.type == ItemType.MUSICS) {
             _pickedItemVariations.value = listOf(item)
+            _finalPickedItem.value = item
             return@launch
         }
-        _pickedItemVariations.value =
-            wearableRepository.findItemsByName(item.name).map { it.toItem() }
+        pickWearable(item)
         _isLoading.value = false
+    }
+
+    private suspend fun pickWearable(item: Item) {
+        val wearables = wearableRepository.findItemsByName(item.name)
+        _pickedWearable.value = wearables[0]
+        _pickedItemVariations.value = wearables.map { it.toItem() }
+        if (wearables.size == 1) {
+            _finalPickedItem.value = wearables[0].toItem()
+        }
     }
 
     fun pickVariationOfItem(item: Item) {
