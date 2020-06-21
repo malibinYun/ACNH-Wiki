@@ -1,121 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grayEF">
+<layout>
 
-    <Button
-        android:id="@+id/btn_tops"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/round_rectangle_white_16dp"
-        android:backgroundTint="@color/lightSkyBlue"
-        android:elevation="2dp"
-        android:text="옷"
-        android:textColor="@android:color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/btn_onepieces"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <Button
-        android:id="@+id/btn_onepieces"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/round_rectangle_white_16dp"
-        android:backgroundTint="@color/lightSkyBlue"
-        android:elevation="2dp"
-        android:text="한 벌 옷"
-        android:textColor="@android:color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/btn_tops"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_tops" />
+        <import type="com.malibin.acnh.wiki.data.ItemType" />
 
-    <Button
-        android:id="@+id/btn_headwears"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/round_rectangle_white_16dp"
-        android:backgroundTint="@color/lightSkyBlue"
-        android:elevation="2dp"
-        android:text="모자"
-        android:textColor="@android:color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="@id/btn_tops"
-        app:layout_constraintRight_toLeftOf="@id/btn_accesories"
-        app:layout_constraintTop_toBottomOf="@id/btn_tops" />
+        <variable
+            name="viewModel"
+            type="com.malibin.acnh.wiki.ui.gift.PickGiftViewModel" />
+    </data>
 
-    <Button
-        android:id="@+id/btn_accesories"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:background="@drawable/round_rectangle_white_16dp"
-        android:backgroundTint="@color/lightSkyBlue"
-        android:elevation="2dp"
-        android:text="액세서리"
-        android:textColor="@android:color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/btn_headwears"
-        app:layout_constraintRight_toRightOf="@id/btn_onepieces"
-        app:layout_constraintTop_toTopOf="@id/btn_headwears" />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grayEF">
 
-    <Button
-        android:id="@+id/btn_musics"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="12dp"
-        android:background="@drawable/round_rectangle_white_16dp"
-        android:backgroundTint="@color/lightSkyBlue"
-        android:elevation="2dp"
-        android:text="음악"
-        android:textColor="@android:color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="@id/btn_tops"
-        app:layout_constraintRight_toLeftOf="@id/btn_what"
-        app:layout_constraintTop_toBottomOf="@id/btn_headwears" />
+        <Button
+            android:id="@+id/btn_tops"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/round_rectangle_white_16dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:elevation="2dp"
+            android:onClick="@{() -> viewModel.pickItemType(ItemType.TOPS)}"
+            android:text="@string/tops"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_onepieces"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_what"
-        android:layout_width="0dp"
-        android:layout_height="92dp"
-        android:background="@drawable/round_rectangle_white_16dp"
-        android:backgroundTint="@color/lightSkyBlue"
-        android:elevation="2dp"
-        android:text="한 벌 옷"
-        android:textColor="@android:color/white"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/btn_musics"
-        app:layout_constraintRight_toRightOf="@id/btn_onepieces"
-        app:layout_constraintTop_toTopOf="@id/btn_musics" />
+        <Button
+            android:id="@+id/btn_onepieces"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/round_rectangle_white_16dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:elevation="2dp"
+            android:onClick="@{() -> viewModel.pickItemType(ItemType.ONEPIECES)}"
+            android:text="@string/onepieces"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/btn_tops"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_tops" />
 
-    <TextView
-        android:id="@+id/btn_other"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="주려는 선물이 보이지 않아요"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_musics" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_headwears"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/round_rectangle_white_16dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:elevation="2dp"
+            android:onClick="@{() -> viewModel.pickItemType(ItemType.HEADWEARS)}"
+            android:text="@string/headwears"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="@id/btn_tops"
+            app:layout_constraintRight_toLeftOf="@id/btn_accesories"
+            app:layout_constraintTop_toBottomOf="@id/btn_tops" />
+
+        <Button
+            android:id="@+id/btn_accesories"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:background="@drawable/round_rectangle_white_16dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:elevation="2dp"
+            android:onClick="@{() -> viewModel.pickItemType(ItemType.ACCESSORIES)}"
+            android:text="@string/accessories"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/btn_headwears"
+            app:layout_constraintRight_toRightOf="@id/btn_onepieces"
+            app:layout_constraintTop_toTopOf="@id/btn_headwears" />
+
+        <Button
+            android:id="@+id/btn_musics"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/round_rectangle_white_16dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:elevation="2dp"
+            android:onClick="@{() -> viewModel.pickItemType(ItemType.MUSICS)}"
+            android:text="@string/musics"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="@id/btn_tops"
+            app:layout_constraintRight_toLeftOf="@id/btn_what"
+            app:layout_constraintTop_toBottomOf="@id/btn_headwears" />
+
+        <Button
+            android:id="@+id/btn_what"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:background="@drawable/round_rectangle_white_16dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:elevation="2dp"
+            android:text="이건머지"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/btn_musics"
+            app:layout_constraintRight_toRightOf="@id/btn_onepieces"
+            app:layout_constraintTop_toTopOf="@id/btn_musics" />
+
+        <TextView
+            android:id="@+id/btn_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="주려는 선물이 보이지 않아요"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_musics" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

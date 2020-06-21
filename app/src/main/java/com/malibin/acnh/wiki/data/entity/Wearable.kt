@@ -2,6 +2,7 @@ package com.malibin.acnh.wiki.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.malibin.acnh.wiki.data.Item
 import com.malibin.acnh.wiki.data.ItemType
 
 /**
@@ -35,6 +36,17 @@ data class Wearable(
     var collected: Boolean = false,
     var wished: Boolean = false
 ) {
+
+    fun toItem() = Item(
+        id = id,
+        name = nameKor,
+        imageUrl = closetImage,
+        colors = colors,
+        type = itemType,
+        isCollected = collected,
+        isWished = wished
+    )
+
     companion object {
         val WEARABLE_LIST =
             listOf(
