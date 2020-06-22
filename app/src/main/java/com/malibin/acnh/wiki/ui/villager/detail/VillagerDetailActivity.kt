@@ -20,6 +20,11 @@ class VillagerDetailActivity : AppCompatActivity() {
         villagerDetailViewModel.loadVillagerOf(getAmiiboIndex())
     }
 
+    override fun onPause() {
+        super.onPause()
+        villagerDetailViewModel.saveVillagerState()
+    }
+
     private fun getAmiiboIndex(): Int {
         val index = intent.getIntExtra(AMIIBO_INDEX, DEFAULT_INDEX)
         if (index == DEFAULT_INDEX) {

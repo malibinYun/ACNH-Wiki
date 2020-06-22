@@ -43,8 +43,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/villager_detail_502_raymond"
-                    tools:visibility="gone" />
+                    tools:src="@drawable/villager_detail_502_raymond" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
@@ -424,8 +423,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
+                    android:onClick="@{() -> villagerViewModel.onClickFavorite()}"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                     app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+                    app:selected="@{villagerViewModel.isFavorite()}"
                     app:srcCompat="@drawable/selector_villager_like" />
 
                 <ImageView
@@ -433,8 +434,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:onClick="@{() -> villagerViewModel.onClickVillagerInHome()}"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_like"
                     app:layout_constraintEnd_toStartOf="@+id/btn_like"
+                    app:selected="@{villagerViewModel.isInHome()}"
                     app:srcCompat="@drawable/selector_villager_in_home" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout

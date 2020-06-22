@@ -32,6 +32,8 @@ class VillagerDetailViewModel(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
+    private var isStateDifferent = false
+
     fun loadVillagerOf(amiiboIndex: Int) = viewModelScope.launch {
         Log.d("Malibin Debug", "amiiboIndex : $amiiboIndex")
         _isLoading.value = true
@@ -54,18 +56,23 @@ class VillagerDetailViewModel(
     fun saveVillagerState() {
         saveIsInHome()
         saveIsFavorite()
+        isStateDifferent = false
     }
 
     private fun saveIsInHome() = CoroutineScope(Dispatchers.IO).launch {
         val villager = getCurrentVillager()
         val isInHome = getCurrentIsInHome()
-        villagersRepository.checkHomeVillager(villager, isInHome)
+        if (villager.isInHome != isInHome) {
+            villagersRepository.checkHomeVillager(villager, isInHome)
+        }
     }
 
     private fun saveIsFavorite() = CoroutineScope(Dispatchers.IO).launch {
         val villager = getCurrentVillager()
         val isFavorite = getCurrentIsFavorite()
-        villagersRepository.checkFavoriteVillager(villager, isFavorite)
+        if (villager.isFavorite != isFavorite) {
+            villagersRepository.checkFavoriteVillager(villager, isFavorite)
+        }
     }
 
     private fun getCurrentVillager() = villager.value

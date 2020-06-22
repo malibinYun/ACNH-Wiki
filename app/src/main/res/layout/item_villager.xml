@@ -54,11 +54,9 @@
             android:layout_height="12dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
             android:background="@drawable/circle_whtie"
             android:backgroundTint="@color/lightSkyBluePoint"
             android:visibility="@{villager.inHome ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@id/ic_like"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -72,6 +70,7 @@
             android:backgroundTint="@color/coral"
             android:visibility="@{villager.favorite ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ic_in_home" />
+            app:layout_constraintTop_toBottomOf="@+id/ic_in_home"
+            app:layout_marginTop='@{villager.inHome ? @dimen/dp4 : @dimen/dp8}' />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
