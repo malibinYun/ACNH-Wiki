@@ -46,7 +46,6 @@ class VillagersRepository(
     @Synchronized
     override suspend fun fetchVillager(amiiboIndex: Int): Villager? {
         return getCachedVillagerById(amiiboIndex)
-            ?: villagersLocalDataSource.fetchVillager(amiiboIndex)
     }
 
     override suspend fun getVillagersInHome(): List<Villager> {
@@ -83,22 +82,23 @@ class VillagersRepository(
     }
 
     override suspend fun checkFavoriteVillager(villager: Villager, isChecked: Boolean) {
-        getCachedVillagerById(villager.amiiboIndex)?.let {
-            it.isFavorite = isChecked
-            villagersLocalDataSource.checkFavoriteVillager(it, isChecked)
-        }
+        val cachedVillager = getCachedVillagerById(villager.amiiboIndex)
+        val newCopy = cachedVillager.copy(isFavorite = isChecked)
+        cachedVillagers[villager.amiiboIndex] = newCopy
+        villagersLocalDataSource.checkFavoriteVillager(villager, isChecked)
     }
 
     override suspend fun checkHomeVillager(villager: Villager, isChecked: Boolean) {
-        getCachedVillagerById(villager.amiiboIndex)?.let {
-            it.isInHome = isChecked
-            villagersLocalDataSource.checkHomeVillager(it, isChecked)
-        }
+        val cachedVillager = getCachedVillagerById(villager.amiiboIndex)
+        val newCopy = cachedVillager.copy(isInHome = isChecked)
+        cachedVillagers[villager.amiiboIndex] = newCopy
+        villagersLocalDataSource.checkHomeVillager(villager, isChecked)
     }
 
-    private fun getCachedVillagerById(amiiboIndex: Int): Villager? {
+    private fun getCachedVillagerById(amiiboIndex: Int): Villager {
         Log.d("Malibin Debug", "fetchVillager Loaded from cache")
         return cachedVillagers[amiiboIndex]
+            ?: throw IllegalStateException("cached villager cannot be null")
     }
 
 }

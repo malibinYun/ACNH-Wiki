@@ -8,6 +8,7 @@ import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.databinding.ActivityVillagersBinding
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity.Companion.AMIIBO_INDEX
+import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity.Companion.VILLAGER_STATE_CHANGED
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VillagersActivity : AppCompatActivity(), VillagerClickListener {
@@ -26,10 +27,20 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
         subscribeVillagers()
     }
 
-    override fun onVillagerClick(villager: Villager) {
+    override fun onClickVillager(villager: Villager) {
         val intent = Intent(this, VillagerDetailActivity::class.java)
         intent.putExtra(AMIIBO_INDEX, villager.amiiboIndex)
-        startActivity(intent)
+        startActivityForResult(intent, VillagerDetailActivity.REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == VillagerDetailActivity.REQUEST_CODE) {
+            if (resultCode == VILLAGER_STATE_CHANGED) {
+                villagersViewModel.refreshVillagers()
+            }
+        }
     }
 
     private fun initView(binding: ActivityVillagersBinding) {

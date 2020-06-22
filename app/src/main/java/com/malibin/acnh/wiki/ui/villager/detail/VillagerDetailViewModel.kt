@@ -1,6 +1,5 @@
 package com.malibin.acnh.wiki.ui.villager.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -32,10 +31,7 @@ class VillagerDetailViewModel(
     val isFavorite: LiveData<Boolean>
         get() = _isFavorite
 
-    private var isStateDifferent = false
-
     fun loadVillagerOf(amiiboIndex: Int) = viewModelScope.launch {
-        Log.d("Malibin Debug", "amiiboIndex : $amiiboIndex")
         _isLoading.value = true
         _villager.value = villagersRepository.fetchVillager(amiiboIndex)
         _isInHome.value = getCurrentVillager().isInHome
@@ -56,23 +52,30 @@ class VillagerDetailViewModel(
     fun saveVillagerState() {
         saveIsInHome()
         saveIsFavorite()
-        isStateDifferent = false
+    }
+
+    fun isStateChanged(): Boolean {
+        return isInHomeChanged() or isFavoriteChanged()
     }
 
     private fun saveIsInHome() = CoroutineScope(Dispatchers.IO).launch {
-        val villager = getCurrentVillager()
-        val isInHome = getCurrentIsInHome()
-        if (villager.isInHome != isInHome) {
-            villagersRepository.checkHomeVillager(villager, isInHome)
+        if (isInHomeChanged()) {
+            villagersRepository.checkHomeVillager(getCurrentVillager(), getCurrentIsInHome())
         }
     }
 
+    private fun isInHomeChanged(): Boolean {
+        return getCurrentVillager().isInHome != getCurrentIsInHome()
+    }
+
     private fun saveIsFavorite() = CoroutineScope(Dispatchers.IO).launch {
-        val villager = getCurrentVillager()
-        val isFavorite = getCurrentIsFavorite()
-        if (villager.isFavorite != isFavorite) {
-            villagersRepository.checkFavoriteVillager(villager, isFavorite)
+        if (isFavoriteChanged()) {
+            villagersRepository.checkFavoriteVillager(getCurrentVillager(), getCurrentIsFavorite())
         }
+    }
+
+    private fun isFavoriteChanged(): Boolean {
+        return getCurrentVillager().isFavorite != getCurrentIsFavorite()
     }
 
     private fun getCurrentVillager() = villager.value

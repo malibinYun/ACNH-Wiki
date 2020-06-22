@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.ui.villager.detail
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.malibin.acnh.wiki.databinding.ActivityVillagerDetailBinding
@@ -20,8 +21,15 @@ class VillagerDetailActivity : AppCompatActivity() {
         villagerDetailViewModel.loadVillagerOf(getAmiiboIndex())
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onBackPressed() {
+        saveVillagerState()
+        super.onBackPressed()
+    }
+
+    private fun saveVillagerState() {
+        if (villagerDetailViewModel.isStateChanged()) {
+            setResult(VILLAGER_STATE_CHANGED, Intent())
+        }
         villagerDetailViewModel.saveVillagerState()
     }
 
@@ -36,5 +44,7 @@ class VillagerDetailActivity : AppCompatActivity() {
     companion object {
         private const val DEFAULT_INDEX = -1
         const val AMIIBO_INDEX = "amiiboIndex"
+        const val REQUEST_CODE = 1000
+        const val VILLAGER_STATE_CHANGED = 100
     }
 }

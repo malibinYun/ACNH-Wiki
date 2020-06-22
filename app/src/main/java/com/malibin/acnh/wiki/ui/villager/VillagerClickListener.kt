@@ -9,6 +9,6 @@ import com.malibin.acnh.wiki.data.entity.Villager
 
 interface VillagerClickListener {
 
-    fun onVillagerClick(villager: Villager)
+    fun onClickVillager(villager: Villager)
 
 }
