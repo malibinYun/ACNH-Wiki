@@ -9,6 +9,7 @@ import com.malibin.acnh.wiki.ui.utils.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * Created By Malibin
@@ -58,7 +59,7 @@ class VillagerDetailViewModel(
         return isInHomeChanged() or isFavoriteChanged()
     }
 
-    private fun saveIsInHome() = CoroutineScope(Dispatchers.IO).launch {
+    private fun saveIsInHome() = runBlocking {
         if (isInHomeChanged()) {
             villagersRepository.checkHomeVillager(getCurrentVillager(), getCurrentIsInHome())
         }
@@ -68,7 +69,7 @@ class VillagerDetailViewModel(
         return getCurrentVillager().isInHome != getCurrentIsInHome()
     }
 
-    private fun saveIsFavorite() = CoroutineScope(Dispatchers.IO).launch {
+    private fun saveIsFavorite() = runBlocking {
         if (isFavoriteChanged()) {
             villagersRepository.checkFavoriteVillager(getCurrentVillager(), getCurrentIsFavorite())
         }
