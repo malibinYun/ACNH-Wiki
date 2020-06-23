@@ -3,7 +3,9 @@ package com.malibin.acnh.wiki.ui.villager.detail
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.malibin.acnh.wiki.data.entity.Villager.Companion.ERROR_AMIIBO_INDEX
 import com.malibin.acnh.wiki.databinding.ActivityVillagerDetailBinding
+import com.malibin.acnh.wiki.ui.gift.recommend.GiftRecommendActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VillagerDetailActivity : AppCompatActivity() {
@@ -13,18 +15,23 @@ class VillagerDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityVillagerDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        villagerDetailViewModel.loadVillagerOf(getVillagerAmiiboIndex())
 
-        binding.villagerViewModel = villagerDetailViewModel
-        binding.lifecycleOwner = this
-        binding.btnBack.setOnClickListener { onBackPressed() }
-        villagerDetailViewModel.loadVillagerOf(getAmiiboIndex())
+        val binding = ActivityVillagerDetailBinding.inflate(layoutInflater)
+        initView(binding)
+        setContentView(binding.root)
     }
 
     override fun onBackPressed() {
         saveVillagerState()
         super.onBackPressed()
+    }
+
+    private fun initView(binding: ActivityVillagerDetailBinding) {
+        binding.villagerViewModel = villagerDetailViewModel
+        binding.lifecycleOwner = this
+        binding.btnBack.setOnClickListener { onBackPressed() }
+        binding.btnRecommendPresent.setOnClickListener { deployGiftRecommendActivity() }
     }
 
     private fun saveVillagerState() {
@@ -34,16 +41,21 @@ class VillagerDetailActivity : AppCompatActivity() {
         villagerDetailViewModel.saveVillagerState()
     }
 
-    private fun getAmiiboIndex(): Int {
-        val index = intent.getIntExtra(AMIIBO_INDEX, DEFAULT_INDEX)
-        if (index == DEFAULT_INDEX) {
+    private fun getVillagerAmiiboIndex(): Int {
+        val index = intent.getIntExtra(AMIIBO_INDEX, ERROR_AMIIBO_INDEX)
+        if (index == ERROR_AMIIBO_INDEX) {
             throw IllegalArgumentException("Amiibo index must be tossed")
         }
         return index
     }
 
+    private fun deployGiftRecommendActivity() {
+        val intent = Intent(this, GiftRecommendActivity::class.java)
+        intent.putExtra(GiftRecommendActivity.AMIIBO_INDEX, getVillagerAmiiboIndex())
+        startActivity(intent)
+    }
+
     companion object {
-        private const val DEFAULT_INDEX = -1
         const val AMIIBO_INDEX = "amiiboIndex"
         const val REQUEST_CODE = 1000
         const val VILLAGER_STATE_CHANGED = 100

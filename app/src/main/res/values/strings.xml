@@ -20,4 +20,9 @@
     <string name="gift_this_item">이 아이템 선물하기</string>
     <string name="show_furniture_list">가구 리스트 보기 👆</string>
     <string name="cannot_see_other_gifts">주려는 선물이 보이지 않아요</string>
+    <string name="recommend_gift">선물 추천</string>
+    <string name="how_much_like_my_gift">내 선물,\n 과연 주민이 얼마나 좋아할까요?</string>
+    <string name="select">선택</string>
+    <string name="pick_gift_for_villager">주민에게 줄 선물을 골라주세요!</string>
+    <string name="this_item_is">이 아이템은…</string>
 </resources>

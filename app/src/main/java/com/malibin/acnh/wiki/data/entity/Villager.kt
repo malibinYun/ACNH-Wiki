@@ -44,6 +44,8 @@ data class Villager(
     companion object {
         const val MALE = "m"
         const val FEMALE = "f"
+
+        const val ERROR_AMIIBO_INDEX = -1
     }
 }
 

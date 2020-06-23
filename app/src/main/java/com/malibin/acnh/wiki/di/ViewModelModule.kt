@@ -1,6 +1,7 @@
 package com.malibin.acnh.wiki.di
 
 import com.malibin.acnh.wiki.ui.gift.PickGiftViewModel
+import com.malibin.acnh.wiki.ui.gift.recommend.GiftRecommendViewModel
 import com.malibin.acnh.wiki.ui.villager.VillagersViewModel
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,6 +16,7 @@ val viewModelModule = module {
     viewModel { VillagersViewModel(get()) }
     viewModel { VillagerDetailViewModel(get()) }
     viewModel { PickGiftViewModel(get(), get()) }
+    viewModel { GiftRecommendViewModel(get(), get(), get()) }
 }
 
 val viewModelModules = listOf(
