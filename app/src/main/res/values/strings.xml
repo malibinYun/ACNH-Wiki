@@ -19,4 +19,5 @@
     <string name="musics">음악</string>
     <string name="gift_this_item">이 아이템 선물하기</string>
     <string name="show_furniture_list">가구 리스트 보기 👆</string>
+    <string name="cannot_see_other_gifts">주려는 선물이 보이지 않아요</string>
 </resources>

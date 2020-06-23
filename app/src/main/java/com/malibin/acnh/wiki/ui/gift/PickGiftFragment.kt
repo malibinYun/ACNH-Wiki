@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.malibin.acnh.wiki.databinding.FragmentPickGiftBinding
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
+
 /**
  * Created By Malibin
  * on 6월 20, 2020
@@ -24,7 +25,15 @@ class PickGiftFragment : Fragment() {
     ): View? {
         val binding = FragmentPickGiftBinding.inflate(layoutInflater, container, false)
         binding.viewModel = pickGiftViewModel
+        binding.btnOther.setOnClickListener { showOtherGiftsBottomSheet() }
+
         return binding.root
     }
 
+    private fun showOtherGiftsBottomSheet() {
+        PickOtherGiftFragment().show(childFragmentManager, null)
+    }
+
 }
+
+
