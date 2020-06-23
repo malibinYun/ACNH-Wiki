@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,18 +12,15 @@
             type="com.malibin.acnh.wiki.ui.gift.PickGiftViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grayEF">
 
         <Button
             android:id="@+id/btn_tops"
-            android:layout_width="0dp"
+            android:layout_width="176dp"
             android:layout_height="92dp"
-            android:layout_marginLeft="24dp"
             android:layout_marginTop="42dp"
             android:layout_marginRight="12dp"
             android:background="@drawable/round_rectangle_white_16dp"
@@ -39,9 +38,8 @@
 
         <Button
             android:id="@+id/btn_onepieces"
-            android:layout_width="0dp"
+            android:layout_width="176dp"
             android:layout_height="92dp"
-            android:layout_marginRight="24dp"
             android:background="@drawable/round_rectangle_white_16dp"
             android:backgroundTint="@color/lightSkyBlue"
             android:elevation="2dp"
@@ -91,10 +89,9 @@
 
         <Button
             android:id="@+id/btn_musics"
-            android:layout_width="0dp"
+            android:layout_width="176dp"
             android:layout_height="92dp"
             android:layout_marginTop="24dp"
-            android:layout_marginRight="12dp"
             android:background="@drawable/round_rectangle_white_16dp"
             android:backgroundTint="@color/lightSkyBlue"
             android:elevation="2dp"
@@ -103,25 +100,11 @@
             android:textColor="@android:color/white"
             android:textSize="22dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/btn_accesories"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="@id/btn_tops"
-            app:layout_constraintRight_toLeftOf="@id/btn_what"
+            app:layout_constraintStart_toStartOf="@+id/btn_headwears"
             app:layout_constraintTop_toBottomOf="@id/btn_headwears" />
-
-        <Button
-            android:id="@+id/btn_what"
-            android:layout_width="0dp"
-            android:layout_height="92dp"
-            android:background="@drawable/round_rectangle_white_16dp"
-            android:backgroundTint="@color/lightSkyBlue"
-            android:elevation="2dp"
-            android:text="이건머지"
-            android:textColor="@android:color/white"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toRightOf="@id/btn_musics"
-            app:layout_constraintRight_toRightOf="@id/btn_onepieces"
-            app:layout_constraintTop_toTopOf="@id/btn_musics" />
 
         <TextView
             android:id="@+id/btn_other"
