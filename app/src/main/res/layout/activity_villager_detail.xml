@@ -188,6 +188,16 @@
                         app:layout_constraintTop_toTopOf="@+id/textView7"
                         tools:text="느끼함" />
 
+                    <ImageView
+                        android:id="@+id/btn_question_personality"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_personality"
+                        app:layout_constraintStart_toEndOf="@+id/tv_personality"
+                        app:layout_constraintTop_toTopOf="@+id/tv_personality"
+                        app:srcCompat="@drawable/que_ic" />
+
                     <TextView
                         android:id="@+id/tv_phrase"
                         android:layout_width="wrap_content"
@@ -304,6 +314,16 @@
                         app:layout_constraintTop_toTopOf="@+id/textView14"
                         tools:text="Nature" />
 
+                    <ImageView
+                        android:id="@+id/btn_question_hobby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_hobby"
+                        app:layout_constraintStart_toEndOf="@+id/tv_hobby"
+                        app:layout_constraintTop_toTopOf="@+id/tv_hobby"
+                        app:srcCompat="@drawable/que_ic" />
+
                     <TextView
                         android:id="@+id/tv_style"
                         android:layout_width="wrap_content"
@@ -335,6 +355,7 @@
                         app:layout_constraintStart_toStartOf="@+id/tv_music"
                         app:layout_constraintTop_toTopOf="@+id/textView17"
                         tools:text="TextView" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -474,6 +495,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView7"
                         tools:src="@drawable/amiibo_card_264" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/back_ic" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

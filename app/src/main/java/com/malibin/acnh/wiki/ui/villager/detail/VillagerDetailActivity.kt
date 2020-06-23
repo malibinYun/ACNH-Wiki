@@ -18,6 +18,7 @@ class VillagerDetailActivity : AppCompatActivity() {
 
         binding.villagerViewModel = villagerDetailViewModel
         binding.lifecycleOwner = this
+        binding.btnBack.setOnClickListener { onBackPressed() }
         villagerDetailViewModel.loadVillagerOf(getAmiiboIndex())
     }
 
