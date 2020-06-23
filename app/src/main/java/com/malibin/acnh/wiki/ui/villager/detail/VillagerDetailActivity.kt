@@ -1,7 +1,9 @@
 package com.malibin.acnh.wiki.ui.villager.detail
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.malibin.acnh.wiki.data.entity.Villager.Companion.ERROR_AMIIBO_INDEX
 import com.malibin.acnh.wiki.databinding.ActivityVillagerDetailBinding
@@ -14,7 +16,7 @@ class VillagerDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setTransparentStatusBar()
         villagerDetailViewModel.loadVillagerOf(getVillagerAmiiboIndex())
 
         val binding = ActivityVillagerDetailBinding.inflate(layoutInflater)
@@ -53,6 +55,14 @@ class VillagerDetailActivity : AppCompatActivity() {
         val intent = Intent(this, GiftRecommendActivity::class.java)
         intent.putExtra(GiftRecommendActivity.AMIIBO_INDEX, getVillagerAmiiboIndex())
         startActivity(intent)
+    }
+
+    private fun setTransparentStatusBar() {
+        window?.decorView?.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = Color.TRANSPARENT
     }
 
     companion object {
