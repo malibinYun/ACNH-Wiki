@@ -20,9 +20,8 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityVillagersBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
         initView(binding)
+        setContentView(binding.root)
 
         subscribeVillagers()
     }
@@ -44,9 +43,12 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
     }
 
     private fun initView(binding: ActivityVillagersBinding) {
+        binding.lifecycleOwner = this
+        binding.viewModel = villagersViewModel
         villagersAdapter = VillagersAdapter()
         villagersAdapter.setVillagerClickListener(this)
         binding.rvVillagers.adapter = villagersAdapter
+        binding.btnBack.setOnClickListener { finish() }
     }
 
     private fun subscribeVillagers() {

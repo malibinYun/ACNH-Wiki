@@ -26,7 +26,9 @@ class VillagersViewModel(
     }
 
     private fun loadVillagers() = viewModelScope.launch {
+        _isLoading.value = true
         _villagers.value = villagersRepository.getAllVillagers()
+        _isLoading.value = false
     }
 
     fun refreshVillagers() {
