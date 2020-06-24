@@ -24,6 +24,7 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
         setContentView(binding.root)
 
         subscribeVillagers()
+        villagersViewModel.loadAllVillagers()
     }
 
     override fun onClickVillager(villager: Villager) {
@@ -37,7 +38,7 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
 
         if (requestCode == VillagerDetailActivity.REQUEST_CODE) {
             if (resultCode == VILLAGER_STATE_CHANGED) {
-                villagersViewModel.refreshVillagers()
+                villagersViewModel.loadAllVillagers()
             }
         }
     }

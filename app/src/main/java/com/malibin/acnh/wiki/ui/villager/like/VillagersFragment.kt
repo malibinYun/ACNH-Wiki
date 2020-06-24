@@ -5,7 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.malibin.acnh.wiki.R
+import androidx.lifecycle.Observer
+import com.malibin.acnh.wiki.databinding.FragmentVillagersBinding
+import com.malibin.acnh.wiki.ui.villager.VillagersAdapter
+import com.malibin.acnh.wiki.ui.villager.VillagersLoadingStrategy
+import com.malibin.acnh.wiki.ui.villager.VillagersViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created By Malibin
@@ -14,11 +19,41 @@ import com.malibin.acnh.wiki.R
 
 class VillagersFragment : Fragment() {
 
+    private val villagersViewModel: VillagersViewModel by viewModel()
+    private val villagersAdapter = VillagersAdapter()
+    private lateinit var villagersLoadingStrategy: VillagersLoadingStrategy
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_villagers, container, false)
+        val binding = FragmentVillagersBinding.inflate(inflater, container, false)
+        initView(binding)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        subscribeVillagers()
+        villagersLoadingStrategy.loadVillagers(villagersViewModel)
+    }
+
+    private fun initView(binding: FragmentVillagersBinding) {
+        binding.lifecycleOwner = this
+        binding.viewModel = villagersViewModel
+        binding.rvVillagers.adapter = villagersAdapter
+    }
+
+    private fun subscribeVillagers() {
+        villagersViewModel.villagers.observe(this, Observer {
+            villagersAdapter.submitList(it)
+        })
+    }
+
+    companion object {
+        fun getInstance(loadingStrategy: VillagersLoadingStrategy) = VillagersFragment()
+            .apply { villagersLoadingStrategy = loadingStrategy }
     }
 }

@@ -21,18 +21,21 @@ class VillagersViewModel(
     val villagers: LiveData<List<Villager>>
         get() = _villagers
 
-    init {
-        loadVillagers()
-    }
-
-    private fun loadVillagers() = viewModelScope.launch {
+    fun loadAllVillagers() = viewModelScope.launch {
         _isLoading.value = true
         _villagers.value = villagersRepository.getAllVillagers()
         _isLoading.value = false
     }
 
-    fun refreshVillagers() {
-        loadVillagers()
+    fun loadFavoriteVillagers() = viewModelScope.launch {
+        _isLoading.value = true
+        _villagers.value = villagersRepository.getFavoriteVillagers()
+        _isLoading.value = false
     }
 
+    fun loadHomeVillagers() = viewModelScope.launch {
+        _isLoading.value = true
+        _villagers.value = villagersRepository.getVillagersInHome()
+        _isLoading.value = false
+    }
 }

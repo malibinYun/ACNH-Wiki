@@ -14,9 +14,15 @@ class VillagersRepository(
     private val villagersRemoteDataSource: VillagersDataSource
 ) : VillagersDataSource {
 
+    @Volatile
     private var isFullLoaded = false
+
+    @Volatile
     private var isInHomeLoaded = false
+
+    @Volatile
     private var isFavoritesLoaded = false
+
     private val cachedVillagers = HashMap<Int, Villager>()
 
     @Synchronized
@@ -25,14 +31,15 @@ class VillagersRepository(
             Log.d("Malibin Debug", "getAllVillagers Loaded from cache")
             return cachedVillagers.values.toList().sortedBy { it.amiiboIndex }
         }
-        isFullLoaded = true
         val localVillagers = villagersLocalDataSource.getAllVillagers()
         if (localVillagers.isEmpty()) {
             val remoteVillagers = villagersRemoteDataSource.getAllVillagers()
             cacheVillagers(remoteVillagers)
             villagersLocalDataSource.saveVillagers(remoteVillagers)
+            isFullLoaded = true
             return remoteVillagers
         }
+        isFullLoaded = true
         cacheVillagers(localVillagers)
         return localVillagers
     }
@@ -49,24 +56,28 @@ class VillagersRepository(
     }
 
     override suspend fun getVillagersInHome(): List<Villager> {
+        Log.d("Malibin","getVillagersInHome")
         if (!isInHomeLoaded && !isFullLoaded) {
             val villagersInHome = villagersLocalDataSource.getVillagersInHome()
             cacheVillagers(villagersInHome)
             isInHomeLoaded = true
             return villagersInHome
         }
+        Log.d("Malibin","getVillagersInHome cache")
         return cachedVillagers.values
             .filter { it.isInHome }
             .sortedBy { it.amiiboIndex }
     }
 
     override suspend fun getFavoriteVillagers(): List<Villager> {
+        Log.d("Malibin","getFavoriteVillagers")
         if (!isFavoritesLoaded && !isFullLoaded) {
             val favoriteVillagers = villagersLocalDataSource.getFavoriteVillagers()
             cacheVillagers(favoriteVillagers)
             isFavoritesLoaded = true
             return favoriteVillagers
         }
+        Log.d("Malibin","getFavoriteVillagers cache")
         return cachedVillagers.values
             .filter { it.isFavorite }
             .sortedBy { it.amiiboIndex }
