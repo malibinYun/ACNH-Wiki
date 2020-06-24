@@ -1,4 +1,4 @@
-package com.malibin.acnh.wiki.ui.villager.like
+package com.malibin.acnh.wiki.ui.villager
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,10 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.databinding.FragmentVillagersBinding
-import com.malibin.acnh.wiki.ui.villager.VillagerClickListener
-import com.malibin.acnh.wiki.ui.villager.VillagersAdapter
-import com.malibin.acnh.wiki.ui.villager.VillagersLoadingStrategy
-import com.malibin.acnh.wiki.ui.villager.VillagersViewModel
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

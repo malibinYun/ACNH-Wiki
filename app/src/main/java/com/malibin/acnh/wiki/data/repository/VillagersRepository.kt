@@ -56,28 +56,28 @@ class VillagersRepository(
     }
 
     override suspend fun getVillagersInHome(): List<Villager> {
-        Log.d("Malibin","getVillagersInHome")
+        Log.d("Malibin", "getVillagersInHome")
         if (!isInHomeLoaded && !isFullLoaded) {
             val villagersInHome = villagersLocalDataSource.getVillagersInHome()
             cacheVillagers(villagersInHome)
             isInHomeLoaded = true
             return villagersInHome
         }
-        Log.d("Malibin","getVillagersInHome cache")
+        Log.d("Malibin", "getVillagersInHome cache")
         return cachedVillagers.values
             .filter { it.isInHome }
             .sortedBy { it.amiiboIndex }
     }
 
     override suspend fun getFavoriteVillagers(): List<Villager> {
-        Log.d("Malibin","getFavoriteVillagers")
+        Log.d("Malibin", "getFavoriteVillagers")
         if (!isFavoritesLoaded && !isFullLoaded) {
             val favoriteVillagers = villagersLocalDataSource.getFavoriteVillagers()
             cacheVillagers(favoriteVillagers)
             isFavoritesLoaded = true
             return favoriteVillagers
         }
-        Log.d("Malibin","getFavoriteVillagers cache")
+        Log.d("Malibin", "getFavoriteVillagers cache")
         return cachedVillagers.values
             .filter { it.isFavorite }
             .sortedBy { it.amiiboIndex }
@@ -110,6 +110,12 @@ class VillagersRepository(
         Log.d("Malibin Debug", "fetchVillager Loaded from cache")
         return cachedVillagers[amiiboIndex]
             ?: throw IllegalStateException("cached villager cannot be null")
+    }
+
+    fun searchVillagerByName(name: String): List<Villager> {
+        return cachedVillagers.values
+            .filter { it.nameKor.contains(name) }
+            .sortedBy { it.nameKor }
     }
 
 }

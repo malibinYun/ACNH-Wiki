@@ -21,6 +21,8 @@ class VillagersViewModel(
     val villagers: LiveData<List<Villager>>
         get() = _villagers
 
+    val searchQuery = MutableLiveData<String>()
+
     fun loadAllVillagers() = viewModelScope.launch {
         _isLoading.value = true
         _villagers.value = villagersRepository.getAllVillagers()
@@ -38,4 +40,12 @@ class VillagersViewModel(
         _villagers.value = villagersRepository.getVillagersInHome()
         _isLoading.value = false
     }
+
+    fun searchVillagerByName() = viewModelScope.launch {
+        _isLoading.value = true
+        _villagers.value = villagersRepository.searchVillagerByName(getQuery())
+        _isLoading.value = false
+    }
+
+    private fun getQuery() = searchQuery.value ?: ""
 }

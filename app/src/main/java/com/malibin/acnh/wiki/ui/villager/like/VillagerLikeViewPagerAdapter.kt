@@ -3,6 +3,7 @@ package com.malibin.acnh.wiki.ui.villager.like
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.malibin.acnh.wiki.ui.villager.VillagersFragment
 import com.malibin.acnh.wiki.ui.villager.VillagersLoadingStrategy.HOME_VILLAGERS
 import com.malibin.acnh.wiki.ui.villager.VillagersLoadingStrategy.FAVORITE_VILLAGERS
 

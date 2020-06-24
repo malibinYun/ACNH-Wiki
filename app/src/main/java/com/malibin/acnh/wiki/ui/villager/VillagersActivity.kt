@@ -26,6 +26,8 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
 
         subscribeVillagers()
         villagersViewModel.loadAllVillagers()
+
+        subscribeSearchQuery()
     }
 
     override fun onClickVillager(villager: Villager) {
@@ -64,4 +66,12 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
             villagersAdapter.submitList(it)
         })
     }
+
+    private fun subscribeSearchQuery() {
+        villagersViewModel.searchQuery.observe(this, Observer {
+            if (it.isBlank()) villagersViewModel.loadAllVillagers()
+            else villagersViewModel.searchVillagerByName()
+        })
+    }
+
 }
