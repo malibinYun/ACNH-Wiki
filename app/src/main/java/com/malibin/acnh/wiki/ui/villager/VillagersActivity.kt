@@ -9,6 +9,7 @@ import com.malibin.acnh.wiki.databinding.ActivityVillagersBinding
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity.Companion.AMIIBO_INDEX
 import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity.Companion.VILLAGER_STATE_CHANGED
+import com.malibin.acnh.wiki.ui.villager.like.VillagerLikeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VillagersActivity : AppCompatActivity(), VillagerClickListener {
@@ -50,6 +51,12 @@ class VillagersActivity : AppCompatActivity(), VillagerClickListener {
         villagersAdapter.setVillagerClickListener(this)
         binding.rvVillagers.adapter = villagersAdapter
         binding.btnBack.setOnClickListener { finish() }
+        binding.btnLikeVillagers.setOnClickListener { deployLikeVillagersActivity() }
+    }
+
+    private fun deployLikeVillagersActivity() {
+        val intent = Intent(this, VillagerLikeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun subscribeVillagers() {

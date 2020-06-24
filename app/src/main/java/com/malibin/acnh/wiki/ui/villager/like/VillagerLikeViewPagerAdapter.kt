@@ -25,6 +25,11 @@ class VillagerLikeViewPagerAdapter(fm: FragmentManager) :
 
     override fun getCount(): Int = PAGE_SIZE
 
+    fun refreshVillagers() {
+        favoriteVillagersFragment.refreshVillagers()
+        homeVillagersFragment.refreshVillagers()
+    }
+
     companion object {
         const val PAGE_SIZE = 2
         const val FRAGMENT_FAVORITE = 0

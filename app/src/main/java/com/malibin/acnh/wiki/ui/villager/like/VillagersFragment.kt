@@ -1,15 +1,19 @@
 package com.malibin.acnh.wiki.ui.villager.like
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.databinding.FragmentVillagersBinding
+import com.malibin.acnh.wiki.ui.villager.VillagerClickListener
 import com.malibin.acnh.wiki.ui.villager.VillagersAdapter
 import com.malibin.acnh.wiki.ui.villager.VillagersLoadingStrategy
 import com.malibin.acnh.wiki.ui.villager.VillagersViewModel
+import com.malibin.acnh.wiki.ui.villager.detail.VillagerDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -17,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * on 6월 24, 2020
  */
 
-class VillagersFragment : Fragment() {
+class VillagersFragment : Fragment(), VillagerClickListener {
 
     private val villagersViewModel: VillagersViewModel by viewModel()
     private val villagersAdapter = VillagersAdapter()
@@ -40,16 +44,27 @@ class VillagersFragment : Fragment() {
         villagersLoadingStrategy.loadVillagers(villagersViewModel)
     }
 
+    override fun onClickVillager(villager: Villager) {
+        val intent = Intent(activity, VillagerDetailActivity::class.java)
+        intent.putExtra(VillagerDetailActivity.AMIIBO_INDEX, villager.amiiboIndex)
+        activity?.startActivityForResult(intent, VillagerDetailActivity.REQUEST_CODE)
+    }
+
     private fun initView(binding: FragmentVillagersBinding) {
         binding.lifecycleOwner = this
         binding.viewModel = villagersViewModel
         binding.rvVillagers.adapter = villagersAdapter
+        villagersAdapter.setVillagerClickListener(this)
     }
 
     private fun subscribeVillagers() {
         villagersViewModel.villagers.observe(this, Observer {
             villagersAdapter.submitList(it)
         })
+    }
+
+    fun refreshVillagers(){
+        villagersLoadingStrategy.loadVillagers(villagersViewModel)
     }
 
     companion object {
