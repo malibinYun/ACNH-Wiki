@@ -34,23 +34,15 @@
                 android:layout_height="match_parent"
                 android:background="@color/grayEF">
 
-                <View
-                    android:id="@+id/statusbar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <ImageView
                     android:id="@+id/iv_image"
                     android:layout_width="0dp"
                     android:layout_height="240dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="16dp"
                     app:imageUrl="@{villagerViewModel.villager.detailUrl}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/statusbar"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/villager_detail_502_raymond" />
 
                 <ImageView
@@ -59,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/statusbar"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/back_ic" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout

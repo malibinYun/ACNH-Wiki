@@ -9,6 +9,9 @@
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <item name="android:statusBarColor">@color/grayEF</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Widget.AppTheme.BottomSheet" parent="Theme.Design.BottomSheetDialog">
