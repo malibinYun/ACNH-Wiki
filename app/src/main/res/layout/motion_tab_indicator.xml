@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.malibin.acnh.wiki.ui.villager.like.VillagerLikeTabIndicator xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layoutDescription="@xml/motion_tab_indicator_scene">
+
+    <Space
+        android:id="@+id/center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="100dp"
+        android:layout_height="4dp" />
+</com.malibin.acnh.wiki.ui.villager.like.VillagerLikeTabIndicator>

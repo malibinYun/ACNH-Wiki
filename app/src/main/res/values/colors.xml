@@ -11,6 +11,7 @@
     <color name="transparent">#00000000</color>
     <color name="textBlack">#383838</color>
 
+    <color name="white">#FFFFFF</color>
     <color name="grayEF">#EFEFEF</color>
     <color name="grayB2">#B2B2B2</color>
 </resources>
