@@ -13,7 +13,7 @@ import com.malibin.acnh.wiki.databinding.BottomSheetOtherGiftsBinding
  * on 6월 23, 2020
  */
 
-class PickOtherGiftFragment : BottomSheetDialogFragment() {
+class OtherGiftFragment : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.Widget_AppTheme_BottomSheet
 

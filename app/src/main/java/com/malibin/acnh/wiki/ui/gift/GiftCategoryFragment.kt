@@ -14,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * on 6월 20, 2020
  */
 
-class PickGiftFragment : Fragment() {
+class GiftCategoryFragment : Fragment() {
 
     private val pickGiftViewModel: PickGiftViewModel by sharedViewModel()
 
@@ -31,7 +31,7 @@ class PickGiftFragment : Fragment() {
     }
 
     private fun showOtherGiftsBottomSheet() {
-        PickOtherGiftFragment().show(childFragmentManager, null)
+        OtherGiftFragment().show(childFragmentManager, null)
     }
 
 }

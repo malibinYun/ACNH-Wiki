@@ -81,4 +81,8 @@ class PickGiftViewModel(
         _finalPickedItem.value = item
     }
 
+    fun clearItemsOfPickedType() {
+        _itemsOfPickedType.postValue(null)
+    }
+
 }

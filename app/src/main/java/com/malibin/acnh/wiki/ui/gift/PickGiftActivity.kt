@@ -20,7 +20,7 @@ class PickGiftActivity : AppCompatActivity() {
         val binding = ActivityPickGiftBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragmentInActivity(PickGiftFragment(), CONTAINER_ID)
+        replaceFragmentInActivity(GiftCategoryFragment(), CONTAINER_ID)
 
         subscribePickedItemType()
         subscribePickedItem()
@@ -28,7 +28,7 @@ class PickGiftActivity : AppCompatActivity() {
 
     private fun subscribePickedItemType() {
         pickGiftViewModel.pickedItemType.observe(this, Observer {
-            addFragmentToActivity(ItemsFragment(), CONTAINER_ID)
+            addFragmentToActivity(GiftsFragment(), CONTAINER_ID)
         })
     }
 

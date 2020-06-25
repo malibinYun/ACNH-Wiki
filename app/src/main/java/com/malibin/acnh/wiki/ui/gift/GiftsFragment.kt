@@ -16,9 +16,10 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
  * on 6월 21, 2020
  */
 
-class ItemsFragment : Fragment(), ItemClickListener {
+class GiftsFragment : Fragment(), ItemClickListener {
 
     private val pickGiftViewModel: PickGiftViewModel by sharedViewModel()
+    private lateinit var binding: FragmentItemsBinding
     private lateinit var itemsAdapter: ItemsAdapter
 
     override fun onAttach(context: Context) {
@@ -32,7 +33,7 @@ class ItemsFragment : Fragment(), ItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentItemsBinding.inflate(inflater)
+        binding = FragmentItemsBinding.inflate(inflater)
         binding.rvItems.adapter = itemsAdapter
         return binding.root
     }
@@ -41,6 +42,16 @@ class ItemsFragment : Fragment(), ItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         subscribeItemsOfPickedType()
+        subscribeDataLoading()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        pickGiftViewModel.clearItemsOfPickedType()
+    }
+
+    override fun onItemClick(item: Item) {
+        pickGiftViewModel.pickItem(item)
     }
 
     private fun subscribeItemsOfPickedType() {
@@ -49,8 +60,9 @@ class ItemsFragment : Fragment(), ItemClickListener {
         })
     }
 
-    override fun onItemClick(item: Item) {
-        pickGiftViewModel.pickItem(item)
+    private fun subscribeDataLoading() {
+        pickGiftViewModel.isLoading.observe(this, Observer { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
     }
-
 }

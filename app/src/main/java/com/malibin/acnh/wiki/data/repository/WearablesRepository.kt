@@ -49,7 +49,7 @@ class WearablesRepository(
         itemTypesCache.add(itemType)
         val specificTypeOfWearable = wearablesRemoteDataSource.getItemsOf(itemType)
         wearablesLocalDataSource.saveItems(specificTypeOfWearable)
-        return specificTypeOfWearable
+        return wearablesLocalDataSource.getItemsOf(itemType)
     }
 
     override suspend fun findItemsByName(itemName: String): List<Wearable> {
