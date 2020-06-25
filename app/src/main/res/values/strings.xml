@@ -25,4 +25,5 @@
     <string name="select">선택</string>
     <string name="pick_gift_for_villager">주민에게 줄 선물을 골라주세요!</string>
     <string name="this_item_is">이 아이템은…</string>
+    <string name="having_furniture">가구리스트</string>
 </resources>
