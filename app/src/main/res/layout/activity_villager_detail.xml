@@ -316,7 +316,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
-                        android:text="@{villagerViewModel.villager.personality}"
+                        android:text="@{villagerViewModel.villager.hobby}"
                         android:textColor="@color/textBlack"
                         android:textSize="16dp"
                         app:layout_constraintStart_toEndOf="@+id/textView14"
