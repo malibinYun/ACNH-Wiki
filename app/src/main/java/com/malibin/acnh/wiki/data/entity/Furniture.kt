@@ -2,6 +2,7 @@ package com.malibin.acnh.wiki.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.malibin.acnh.wiki.data.Item
 import com.malibin.acnh.wiki.data.ItemType
 
 @Entity
@@ -33,6 +34,17 @@ data class Furniture(
     var collected: Boolean = false,
     var wished: Boolean = false
 ) {
+
+    fun toItem() = Item(
+        id = id,
+        name = nameKor,
+        imageUrl = imageUrl,
+        colors = colors,
+        type = itemType,
+        isCollected = collected,
+        isWished = wished
+    )
+
     companion object {
         val FURNITURE_LIST =
             listOf(

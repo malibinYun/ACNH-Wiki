@@ -51,7 +51,10 @@ class HouseInteriorsRepository(
     }
 
     override suspend fun findItemByName(itemName: String): HouseInterior? {
-        return houseInteriorLocalDataSource.findItemByName(itemName)
+        if (itemTypesCache.size == HOUSE_INTERIOR_LIST.size) {
+            return houseInteriorLocalDataSource.findItemByName(itemName)
+        }
+        return getAllItems().first { it.nameKor == itemName }
     }
 
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<HouseInterior> {

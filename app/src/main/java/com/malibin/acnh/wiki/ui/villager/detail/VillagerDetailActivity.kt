@@ -2,10 +2,13 @@ package com.malibin.acnh.wiki.ui.villager.detail
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.malibin.acnh.wiki.data.entity.Villager.Companion.ERROR_AMIIBO_INDEX
 import com.malibin.acnh.wiki.databinding.ActivityVillagerDetailBinding
 import com.malibin.acnh.wiki.ui.gift.recommend.GiftRecommendActivity
+import com.malibin.acnh.wiki.ui.villager.furniture.VillagerFurnitureViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VillagerDetailActivity : AppCompatActivity() {
