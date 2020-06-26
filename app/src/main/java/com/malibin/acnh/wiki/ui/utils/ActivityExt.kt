@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.ui.utils
 
+import android.content.res.Resources
 import android.os.Build
 import android.view.Window
 import androidx.annotation.ColorRes
@@ -37,3 +38,9 @@ fun AppCompatActivity.changeStatusBarColor(@ColorRes color: Int) {
         this.window.statusBarColor = resources.getColor(color)
     }
 }
+
+fun Int.toDp(): Float = this / Resources.getSystem().displayMetrics.density
+
+fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+fun Float.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
