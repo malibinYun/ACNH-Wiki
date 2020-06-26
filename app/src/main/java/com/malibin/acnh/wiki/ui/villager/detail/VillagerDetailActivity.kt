@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.malibin.acnh.wiki.data.entity.Villager.Companion.ERROR_AMIIBO_INDEX
 import com.malibin.acnh.wiki.databinding.ActivityVillagerDetailBinding
 import com.malibin.acnh.wiki.ui.gift.recommend.GiftRecommendActivity
+import com.malibin.acnh.wiki.ui.villager.furniture.VillagerFurnitureFragment
 import com.malibin.acnh.wiki.ui.villager.furniture.VillagerFurnitureViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,6 +35,7 @@ class VillagerDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.btnBack.setOnClickListener { onBackPressed() }
         binding.btnRecommendPresent.setOnClickListener { deployGiftRecommendActivity() }
+        binding.btnShowFurnitureList.setOnClickListener { showVillagerFurnitureBottomSheet() }
     }
 
     private fun saveVillagerState() {
@@ -55,6 +57,12 @@ class VillagerDetailActivity : AppCompatActivity() {
         val intent = Intent(this, GiftRecommendActivity::class.java)
         intent.putExtra(GiftRecommendActivity.AMIIBO_INDEX, getVillagerAmiiboIndex())
         startActivity(intent)
+    }
+
+    private fun showVillagerFurnitureBottomSheet() {
+        VillagerFurnitureFragment().apply {
+            setVillagerAmiibo(getVillagerAmiiboIndex())
+        }.show(supportFragmentManager, null)
     }
 
     companion object {

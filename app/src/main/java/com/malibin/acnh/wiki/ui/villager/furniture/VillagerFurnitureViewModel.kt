@@ -31,7 +31,7 @@ class VillagerFurnitureViewModel(
     val furnitureList: LiveData<List<Item>>
         get() = _furnitureList
 
-    fun loadVillager(amiiboIndex: Int) = viewModelScope.launch {
+    fun loadFurnitureOf(amiiboIndex: Int) = viewModelScope.launch {
         _villager.value = villagersRepository.fetchVillager(amiiboIndex)
         loadFurnitureList()
     }
