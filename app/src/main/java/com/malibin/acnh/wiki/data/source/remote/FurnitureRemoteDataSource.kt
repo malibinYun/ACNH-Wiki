@@ -44,6 +44,10 @@ class FurnitureRemoteDataSource(
         throw UnsupportedOperationException("Cannot call findItemById in remote source")
     }
 
+    override suspend fun findItemByName(itemName: String): List<Furniture> {
+        throw UnsupportedOperationException("Cannot call findItemByName in remote source")
+    }
+
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<Furniture> {
         throw UnsupportedOperationException("Cannot call getCollectedItemsOf in remote source")
     }

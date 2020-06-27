@@ -11,4 +11,6 @@ interface FurnitureDataSource : ItemDataSource<Furniture>, MultiItemTypeSource<F
 
     suspend fun getItemsOf(specificIds: List<Int>): List<Furniture>
 
+    suspend fun findItemByName(itemName: String): List<Furniture>
+
 }

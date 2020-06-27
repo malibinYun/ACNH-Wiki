@@ -64,6 +64,10 @@ class FurnitureRepository(
         return furnitureLocalDataSource.findItemById(id)
     }
 
+    override suspend fun findItemByName(itemName: String): List<Furniture> {
+        return furnitureLocalDataSource.findItemByName(itemName)
+    }
+
     override suspend fun getCollectedItemsOf(itemType: ItemType): List<Furniture> {
         return furnitureLocalDataSource.getCollectedItemsOf(itemType)
     }

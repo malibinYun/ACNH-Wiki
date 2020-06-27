@@ -30,6 +30,9 @@ interface FurnitureDao {
     @Query("SELECT * FROM furniture WHERE id = :id")
     suspend fun findFurnitureById(id: Int): Furniture?
 
+    @Query("SELECT * FROM furniture WHERE nameKor = :itemName")
+    suspend fun findFurnitureByName(itemName: String): List<Furniture>
+
     @Query("SELECT * FROM furniture WHERE collected = 1")
     suspend fun getCollectedFurnitureList(): List<Furniture>
 
