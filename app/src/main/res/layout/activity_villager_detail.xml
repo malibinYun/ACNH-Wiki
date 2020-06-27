@@ -355,15 +355,26 @@
                         app:layout_constraintTop_toTopOf="@+id/textView16"
                         tools:text="팝K.K." />
 
-                    <TextView
-                        android:id="@+id/tv_colors"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/textBlack"
-                        android:textSize="16dp"
+                    <ImageView
+                        android:id="@+id/iv_favorite_color_first"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:favoriteColorFirst="@{villagerViewModel.villager.likeColors}"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView17"
                         app:layout_constraintStart_toStartOf="@+id/tv_music"
                         app:layout_constraintTop_toTopOf="@+id/textView17"
-                        tools:text="TextView" />
+                        app:srcCompat="@drawable/circle_whtie" />
+
+                    <ImageView
+                        android:id="@+id/iv_favorite_color_second"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        app:favoriteColorSecond="@{villagerViewModel.villager.likeColors}"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_favorite_color_first"
+                        app:layout_constraintStart_toEndOf="@+id/iv_favorite_color_first"
+                        app:layout_constraintTop_toTopOf="@+id/iv_favorite_color_first"
+                        app:srcCompat="@drawable/circle_whtie" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
