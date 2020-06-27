@@ -2,13 +2,27 @@ package com.malibin.acnh.wiki.data.util
 
 import android.text.TextUtils
 import androidx.room.TypeConverter
+import com.malibin.acnh.wiki.data.ItemType
+import java.util.*
 
 /**
- * Created By Yun Hyeok
- * on 5월 25, 2020
+ * Created By Malibin
+ * on 6월 27, 2020
  */
 
-class ListTypeConverter {
+class CustomTypeConverters {
+
+    @TypeConverter
+    fun toDate(milliseconds: Long?): Date? = milliseconds?.let { Date(it) }
+
+    @TypeConverter
+    fun fromDate(date: Date?): Long? = date?.time
+
+    @TypeConverter
+    fun toItemType(value: String?): ItemType? = enumValueOf<ItemType>(value ?: "")
+
+    @TypeConverter
+    fun fromItemType(itemType: ItemType?): String? = itemType?.name
 
     @TypeConverter
     fun toListString(csvString: String): List<String> = csvString.split(DELIMITER)

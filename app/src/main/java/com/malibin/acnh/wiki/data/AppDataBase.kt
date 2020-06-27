@@ -5,11 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.malibin.acnh.wiki.data.dao.*
 import com.malibin.acnh.wiki.data.entity.*
-import com.malibin.acnh.wiki.data.util.DateTypeConverter
-import com.malibin.acnh.wiki.data.util.ItemTypeConverter
-import com.malibin.acnh.wiki.data.util.ListTypeConverter
+import com.malibin.acnh.wiki.data.util.CustomTypeConverters
 
-@TypeConverters(DateTypeConverter::class, ListTypeConverter::class, ItemTypeConverter::class)
+@TypeConverters(CustomTypeConverters::class)
 @Database(
     entities = [
         Villager::class,
