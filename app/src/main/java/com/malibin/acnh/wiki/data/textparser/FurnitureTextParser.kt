@@ -28,10 +28,16 @@ class FurnitureTextParser {
             val colors = ArrayList<String>()
             if (cursor[8].isNotBlank()) colors.add(cursor[8])
             if (cursor[9].isNotBlank()) colors.add(cursor[9])
+
+            val variationId = with(cursor[14]) {
+                if (this == "NA") "00"
+                else this.split("_").joinToString(separator = "")
+            }
+            val id = (cursor[1] + variationId).toInt()
             return Furniture(
                 itemType = itemType,
                 nameKor = cursor[0],
-                id = cursor[1].toInt(),
+                id = id,
                 nameEng = cursor[2],
                 imageUrl = cursor[3],
                 buyCost = cursor[4].toIntOrNull(),
@@ -65,7 +71,7 @@ class FurnitureTextParser {
             return Furniture(
                 itemType = itemType,
                 nameKor = cursor[0],
-                id = cursor[1].toInt(),
+                id = (cursor[1] + "00").toInt(),
                 nameEng = cursor[2],
                 imageUrl = cursor[3],
                 buyCost = cursor[4].toIntOrNull(),

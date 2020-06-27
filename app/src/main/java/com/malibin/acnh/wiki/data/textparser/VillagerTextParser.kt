@@ -44,7 +44,7 @@ class VillagerTextParser {
                 likeColors = cursor[16].split(DELIMITER),
                 wallPaper = cursor[17],
                 floor = cursor[18],
-                furnitureIds = cursor[19].split(DELIMITER).map { it.toInt() },
+                furnitureIds = cursor[19].split(DELIMITER).map { (it + "00").toInt() },
                 amiiboCardUrl = cursor[20],
                 detailUrl = cursor[21],
                 exteriorUrl = cursor[22],
