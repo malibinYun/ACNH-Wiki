@@ -8,6 +8,21 @@
     <color name="lightSkyBluePoint">#87DCE8</color>
     <color name="coral">#FF756F</color>
 
+    <color name="favoriteColorRed">#FF0000</color>
+    <color name="favoriteColorOrange">#FF7F33</color>
+    <color name="favoriteColorYellow">#FFFF00</color>
+    <color name="favoriteColorGreen">#00FF00</color>
+    <color name="favoriteColorLightBlue">#33D0FF</color>
+    <color name="favoriteColorBlue">#3378FF</color>
+    <color name="favoriteColorPurple">#8888FF</color>
+    <color name="favoriteColorPink">#FF82B5</color>
+    <color name="favoriteColorBrown">#AB5E17</color>
+    <color name="favoriteColorBeige">#F3C79E</color>
+    <color name="favoriteColorBlack">#000000</color>
+    <color name="favoriteColorGray">#BEBEBE</color>
+    <color name="favoriteColorWhite">#EEEEEE</color>
+    <color name="favoriteColorColorful">#FF756F</color>
+
     <color name="transparent">#00000000</color>
     <color name="textBlack">#383838</color>
 

@@ -2,6 +2,7 @@ package com.malibin.acnh.wiki.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.malibin.acnh.wiki.data.FavoriteColor
 import java.util.*
 
 /**
@@ -28,7 +29,7 @@ data class Villager(
     val hobby: String,
     val likeMusic: String,
     val likeStyles: List<String>,
-    val likeColors: List<String>,
+    val likeColors: List<FavoriteColor>,
     val wallPaper: String,
     val floor: String,
     val furnitureIds: List<Int>,

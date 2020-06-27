@@ -6,8 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.malibin.acnh.wiki.data.entity.Villager
 import com.malibin.acnh.wiki.data.repository.VillagersRepository
 import com.malibin.acnh.wiki.ui.utils.BaseViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 

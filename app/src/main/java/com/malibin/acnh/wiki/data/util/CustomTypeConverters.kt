@@ -2,6 +2,7 @@ package com.malibin.acnh.wiki.data.util
 
 import android.text.TextUtils
 import androidx.room.TypeConverter
+import com.malibin.acnh.wiki.data.FavoriteColor
 import com.malibin.acnh.wiki.data.ItemType
 import java.util.*
 
@@ -35,6 +36,14 @@ class CustomTypeConverters {
 
     @TypeConverter
     fun fromListInt(intList: List<Int>): String = TextUtils.join(DELIMITER, intList)
+
+    @TypeConverter
+    fun toFavoriteColorList(csvColors: String): List<FavoriteColor> =
+        csvColors.split(DELIMITER).map { enumValueOf<FavoriteColor>(it) }
+
+    @TypeConverter
+    fun fromFavoriteColorList(colors: List<FavoriteColor>): String =
+        colors.joinToString(separator = DELIMITER) { it.name }
 
     companion object {
         private const val DELIMITER = ","

@@ -1,5 +1,6 @@
 package com.malibin.acnh.wiki.data.textparser
 
+import com.malibin.acnh.wiki.data.FavoriteColor
 import com.malibin.acnh.wiki.data.entity.Villager
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,7 +42,7 @@ class VillagerTextParser {
                 hobby = cursor[13],
                 likeMusic = cursor[14],
                 likeStyles = cursor[15].split(DELIMITER),
-                likeColors = cursor[16].split(DELIMITER),
+                likeColors = cursor[16].split(DELIMITER).map { FavoriteColor.findByKey(it) }.distinct(),
                 wallPaper = cursor[17],
                 floor = cursor[18],
                 furnitureIds = cursor[19].split(DELIMITER).map { (it + "00").toInt() },
